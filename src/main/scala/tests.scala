@@ -130,6 +130,8 @@ object FMATest {
             case "MulAddRecF16_mul" =>
                 chiselMain(
                     testArgs, () => Module(new ValExec_MulAddRecF16_mul))
+            case "ImplMulAddRecF16" =>
+                chiselMain(testArgs, () => Module(new MulAddRecF16))
             case "MulAddRecF16" =>
                 chiselMain(testArgs, () => Module(new ValExec_MulAddRecF16))
             case "MulAddRecF32_add" =>
@@ -138,6 +140,8 @@ object FMATest {
             case "MulAddRecF32_mul" =>
                 chiselMain(
                     testArgs, () => Module(new ValExec_MulAddRecF32_mul))
+            case "ImplMulAddRecF32" =>
+                chiselMain(testArgs, () => Module(new MulAddRecF32))
             case "MulAddRecF32" =>
                 chiselMain(testArgs, () => Module(new ValExec_MulAddRecF32))
             case "MulAddRecF64_add" =>
@@ -146,6 +150,8 @@ object FMATest {
             case "MulAddRecF64_mul" =>
                 chiselMain(
                     testArgs, () => Module(new ValExec_MulAddRecF64_mul))
+            case "ImplMulAddRecF64" =>
+                chiselMain(testArgs, () => Module(new MulAddRecF64))
             case "MulAddRecF64" =>
                 chiselMain(testArgs, () => Module(new ValExec_MulAddRecF64))
             case "DivSqrtRecF16_small_div" =>
