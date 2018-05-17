@@ -124,6 +124,12 @@ object FMATest {
                 chiselMain(testArgs, () => Module(new ValExec_RecF64ToRecF16))
             case "RecF64ToRecF32" =>
                 chiselMain(testArgs, () => Module(new ValExec_RecF64ToRecF32))
+            case "RecFNFrom16FN" =>
+                chiselMain(testArgs, () => Module(new ValExec_recFNFrom16FN))
+            case "RecFNFrom32FN" =>
+                chiselMain(testArgs, () => Module(new ValExec_recFNFrom32FN))
+            case "RecFNFrom64FN" =>
+                chiselMain(testArgs, () => Module(new ValExec_recFNFrom64FN))
             case "MulAddRecF16_add" =>
                 chiselMain(
                     testArgs, () => Module(new ValExec_MulAddRecF16_add))
