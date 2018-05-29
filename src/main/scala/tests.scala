@@ -124,12 +124,20 @@ object FMATest {
                 chiselMain(testArgs, () => Module(new ValExec_RecF64ToRecF16))
             case "RecF64ToRecF32" =>
                 chiselMain(testArgs, () => Module(new ValExec_RecF64ToRecF32))
+            case "RecFNFrom16FN" =>
+                chiselMain(testArgs, () => Module(new ValExec_recFNFrom16FN))
+            case "RecFNFrom32FN" =>
+                chiselMain(testArgs, () => Module(new ValExec_recFNFrom32FN))
+            case "RecFNFrom64FN" =>
+                chiselMain(testArgs, () => Module(new ValExec_recFNFrom64FN))
             case "MulAddRecF16_add" =>
                 chiselMain(
                     testArgs, () => Module(new ValExec_MulAddRecF16_add))
             case "MulAddRecF16_mul" =>
                 chiselMain(
                     testArgs, () => Module(new ValExec_MulAddRecF16_mul))
+            case "ImplMulAddRecF16" =>
+                chiselMain(testArgs, () => Module(new MulAddRecF16))
             case "MulAddRecF16" =>
                 chiselMain(testArgs, () => Module(new ValExec_MulAddRecF16))
             case "MulAddRecF32_add" =>
@@ -138,6 +146,8 @@ object FMATest {
             case "MulAddRecF32_mul" =>
                 chiselMain(
                     testArgs, () => Module(new ValExec_MulAddRecF32_mul))
+            case "ImplMulAddRecF32" =>
+                chiselMain(testArgs, () => Module(new MulAddRecF32))
             case "MulAddRecF32" =>
                 chiselMain(testArgs, () => Module(new ValExec_MulAddRecF32))
             case "MulAddRecF64_add" =>
@@ -146,6 +156,8 @@ object FMATest {
             case "MulAddRecF64_mul" =>
                 chiselMain(
                     testArgs, () => Module(new ValExec_MulAddRecF64_mul))
+            case "ImplMulAddRecF64" =>
+                chiselMain(testArgs, () => Module(new MulAddRecF64))
             case "MulAddRecF64" =>
                 chiselMain(testArgs, () => Module(new ValExec_MulAddRecF64))
             case "DivSqrtRecF16_small_div" =>

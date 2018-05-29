@@ -179,3 +179,7 @@ class ValExec_MulAddRecF16_mul extends ValExec_MulAddRecFN_mul(5, 11)
 class ValExec_MulAddRecF32_mul extends ValExec_MulAddRecFN_mul(8, 24)
 class ValExec_MulAddRecF64_mul extends ValExec_MulAddRecFN_mul(11, 53)
 
+class MulAddRecF16 extends MulAddRecFN(5, 11)
+class MulAddRecF32 extends MulAddRecFN(8, 24)
+class MulAddRecF64 extends MulAddRecFN(11, 53)
+

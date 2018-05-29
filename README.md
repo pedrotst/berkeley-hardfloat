@@ -1,3 +1,12 @@
+Building just a module
+======================
+
+## Verilog
+sbt -DchiselVersion=2.2.38 "run ImplMulAddRecF64 --targetDir test-MulAddRecF64 --backend v"
+
+## C
+sbt -DchiselVersion=2.2.38 "run ImplMulAddRecF64 --targetDir test-MulAddRecF64"
+
 Berkeley Hardware Floating-Point Units
 ======================================
 
