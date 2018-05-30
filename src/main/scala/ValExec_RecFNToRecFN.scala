@@ -49,19 +49,8 @@ class
         val roundingMode   = UInt(INPUT, 3)
         val detectTininess = UInt(INPUT, 1)
 
-        val expected = new Bundle {
-            val out = Bits(INPUT, outExpWidth + outSigWidth)
-            val exceptionFlags = Bits(INPUT, 5)
-            val recOut = Bits(OUTPUT, outExpWidth + outSigWidth + 1)
-        }
-
-        val actual = new Bundle {
-            val out = Bits(OUTPUT, outExpWidth + outSigWidth + 1)
-            val exceptionFlags = Bits(OUTPUT, 5)
-        }
-
-        val check = Bool(OUTPUT)
-        val pass = Bool(OUTPUT)
+        val out = Bits(OUTPUT, outExpWidth + outSigWidth)
+        val exceptionFlags = Bits(OUTPUT, 5)
     }
 
     val recFNToRecFN =
@@ -71,17 +60,9 @@ class
     recFNToRecFN.io.roundingMode   := io.roundingMode
     recFNToRecFN.io.detectTininess := io.detectTininess
 
-    io.expected.recOut :=
-        recFNFromFN(outExpWidth, outSigWidth, io.expected.out)
+    io.out := fNFromRecFN(outExpWidth, outSigWidth, recFNToRecFN.io.out)
+    io.exceptionFlags := recFNToRecFN.io.exceptionFlags
 
-    io.actual.out := recFNToRecFN.io.out
-    io.actual.exceptionFlags := recFNToRecFN.io.exceptionFlags
-
-    io.check := Bool(true)
-    io.pass :=
-        equivRecFN(
-            outExpWidth, outSigWidth, io.actual.out, io.expected.recOut) &&
-        (io.actual.exceptionFlags === io.expected.exceptionFlags)
 }
 
 class ValExec_RecF16ToRecF32 extends ValExec_RecFNToRecFN(5, 11, 8, 24)
