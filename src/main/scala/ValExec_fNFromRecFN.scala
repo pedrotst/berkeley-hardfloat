@@ -42,14 +42,14 @@ import Chisel._
 class ValExec_fNFromRecFN(expWidth: Int, sigWidth: Int) extends Module
 {
     val io = new Bundle {
-        val a = Bits(INPUT, expWidth + sigWidth + 1)
+        val a = Bits(INPUT, expWidth + sigWidth)
         val out = Bits(OUTPUT, expWidth + sigWidth)
         val check = Bool(OUTPUT)
         val pass = Bool(OUTPUT)
     }
 
     io.out :=
-        fNFromRecFN(expWidth, sigWidth, io.a)
+        fNFromRecFN(expWidth, sigWidth, recFNFromFN(expWidth, sigWidth, io.a))
 
     io.check := Bool(true)
     io.pass := (io.out === io.a)
