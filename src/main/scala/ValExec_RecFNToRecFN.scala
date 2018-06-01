@@ -40,7 +40,7 @@ package hardfloat
 import Chisel._
 
 class
-    ValExec_RecFNToRecFN(
+    ValExec_FNToFN(
         inExpWidth: Int, inSigWidth: Int, outExpWidth: Int, outSigWidth: Int)
     extends Module
 {
@@ -65,10 +65,10 @@ class
 
 }
 
-class ValExec_RecF16ToRecF32 extends ValExec_RecFNToRecFN(5, 11, 8, 24)
-class ValExec_RecF16ToRecF64 extends ValExec_RecFNToRecFN(5, 11, 11, 53)
-class ValExec_RecF32ToRecF16 extends ValExec_RecFNToRecFN(8, 24, 5, 11)
-class ValExec_RecF32ToRecF64 extends ValExec_RecFNToRecFN(8, 24, 11, 53)
-class ValExec_RecF64ToRecF16 extends ValExec_RecFNToRecFN(11, 53, 5, 11)
-class ValExec_RecF64ToRecF32 extends ValExec_RecFNToRecFN(11, 53, 8, 24)
+class ValExec_F16ToF32 extends ValExec_FNToFN(5, 11, 8, 24)
+class ValExec_F16ToF64 extends ValExec_FNToFN(5, 11, 11, 53)
+class ValExec_F32ToF16 extends ValExec_FNToFN(8, 24, 5, 11)
+class ValExec_F32ToF64 extends ValExec_FNToFN(8, 24, 11, 53)
+class ValExec_F64ToF16 extends ValExec_FNToFN(11, 53, 5, 11)
+class ValExec_F64ToF32 extends ValExec_FNToFN(11, 53, 8, 24)
 
