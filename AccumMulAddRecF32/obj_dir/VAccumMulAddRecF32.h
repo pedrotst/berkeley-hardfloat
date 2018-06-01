@@ -38,8 +38,10 @@ VL_MODULE(VAccumMulAddRecF32) {
     VL_SIG8(AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_postMul__DOT__T327,4,0);
     VL_SIG8(AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_postMul__DOT__T134,7,0);
     VL_SIG8(AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_postMul__DOT__T138,7,0);
+    VL_SIG8(AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_postMul__DOT__T312,0,0);
     VL_SIG8(AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_postMul__DOT__T316,0,0);
     VL_SIG8(AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T5,0,0);
+    VL_SIG8(AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__commonCase,0,0);
     VL_SIG8(AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__isNaNOut,0,0);
     VL_SIG8(AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__overflow,0,0);
     VL_SIG8(AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__notNaN_isInfOut,0,0);
@@ -57,6 +59,7 @@ VL_MODULE(VAccumMulAddRecF32) {
     VL_SIG(AccumMulAddRecF32__DOT__initvar,31,0);
     VL_SIGW(AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__alignedSigC,75,0,3);
     VL_SIGW(AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__mainAlignedSigC,77,0,3);
+    VL_SIG(AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T140,23,0);
     VL_SIG(AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_postMul__DOT__notCDom_sig,26,0);
     VL_SIG(AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_postMul__DOT__T11,25,0);
     VL_SIG(AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_postMul__DOT__T17,25,0);

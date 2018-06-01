@@ -1,4 +1,5 @@
 /* verilator lint_off STMTDLY */
+
 module MulAddRecFNToRaw_preMul(
     input [1:0] io_op,
     input [32:0] io_a,
@@ -2014,7 +2015,7 @@ module AccumMulAddRecF32(input clk, input reset,
   MulAddRecFN mulAdd(
        .io_op( 2'h0 ),
        .io_a( accum ),
-       .io_b( 33'h800000 ),
+       .io_b( 33'h80000000 ),
        .io_c( 33'h0 ),
        .io_roundingMode( 3'h0 ),
        .io_detectTininess( 1'h0 ),

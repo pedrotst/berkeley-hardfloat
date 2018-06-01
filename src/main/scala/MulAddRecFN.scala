@@ -365,7 +365,7 @@ class AccumMulAddRecF32 extends Module
     mulAdd.io.op := UInt(0)
     mulAdd.io.a := accum
     mulAdd.io.c := UInt(0)
-    mulAdd.io.b := UInt("b00000000100000000000000000000000")
+    mulAdd.io.b := UInt("b01000_0000_0000_0000_0000_0000_0000_0000")
     mulAdd.io.roundingMode := UInt(0)
     mulAdd.io.detectTininess := UInt(0)
     io.ignore := mulAdd.io.exceptionFlags
