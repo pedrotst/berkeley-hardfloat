@@ -23,10 +23,11 @@ int main(int argc, char ** argv, char **env) {
 
   
   vluint64_t main_time = 0;
+  uint32_t io_out_exp = 0x63;
 
-  while (!Verilated::gotFinish() && (main_time < 20)) {
-    top->clk = main_time%2;
-    if(main_time < 10)
+  while (!Verilated::gotFinish() && ((main_time < 10) || (io_out_exp > 0x62))) {
+    top->clk = main_time;
+    if(main_time < 2)
       top->reset = 1;
     else
       top->reset = 0;
@@ -35,7 +36,7 @@ int main(int argc, char ** argv, char **env) {
 
     uint32_t io_out_sign = (top->io_out >> (outExpWidth + outSigWidth)) & 1;
 
-    uint32_t io_out_exp = (top->io_out >> (outSigWidth - 1)) & ones(outExpWidth + 1);
+    io_out_exp = (top->io_out >> (outSigWidth - 1)) & ones(outExpWidth + 1);
 
     uint32_t io_out_sig = (top->io_out) & ones(outSigWidth-1);
 
@@ -43,10 +44,9 @@ int main(int argc, char ** argv, char **env) {
     printf("\n");
     printBits(1, sizeof(io_out_sign), &io_out_sign, "io_out_sign:\t\t");
     printBits(outExpWidth + 1, sizeof(io_out_exp), &io_out_exp, "io_out_exp:\t\t");
+    printf("exp:\t\t\t%x\n", io_out_exp);
     printBits(outSigWidth - 1, sizeof(io_out_sig), &io_out_sig, "io_out_sig:\t\t");
     printBits(outExpWidth + outSigWidth + 1, sizeof(top->io_out), &top->io_out, "io_out:\t\t\t");
-    printBits(outExpWidth + outSigWidth + 1, sizeof(top->io_out2), &top->io_out2, "io_out2:\t\t");
-    printBits(outExpWidth + outSigWidth, sizeof(top->io_out3), &top->io_out3, "io_out3:\t\t");
     printf("\n");
 
     tfp->dump(main_time);
