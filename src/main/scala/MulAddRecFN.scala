@@ -347,3 +347,27 @@ class MulAddRecFN(expWidth: Int, sigWidth: Int) extends Module
     io.exceptionFlags := roundRawFNToRecFN.io.exceptionFlags
 }
 
+class AccumMulAddRecF32 extends Module
+{
+    val regInit1 = UInt("b00000000000000000000000001101010")
+    val regInit = recFNFromFN(8,24,regInit1)
+    val accum = RegInit(regInit)
+    val io = new Bundle {
+        val out = Bits(OUTPUT, 33)
+        val out2 = Bits(OUTPUT, 33)
+        val out3 = Bits(OUTPUT, 32)
+        val ignore = Bits(OUTPUT, 5)
+    }
+    io.out2 := regInit
+    io.out3 := regInit1
+    io.out := accum
+    val mulAdd = Module(new MulAddRecFN(8, 24))
+    mulAdd.io.op := UInt(0)
+    mulAdd.io.a := accum
+    mulAdd.io.c := UInt(0)
+    mulAdd.io.b := UInt("b00000000100000000000000000000000")
+    mulAdd.io.roundingMode := UInt(0)
+    mulAdd.io.detectTininess := UInt(0)
+    io.ignore := mulAdd.io.exceptionFlags
+    accum := mulAdd.io.out
+}

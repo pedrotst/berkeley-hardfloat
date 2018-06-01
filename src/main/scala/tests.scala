@@ -220,6 +220,9 @@ object FMATest {
             case "CompareRecF64_eq" =>
                 chiselMain(
                     testArgs, () => Module(new ValExec_CompareRecF64_eq))
+            case "AccumMulAddRecF32" =>
+                chiselMain(
+                    testArgs, () => Module(new AccumMulAddRecF32))
         }
     }
 }
