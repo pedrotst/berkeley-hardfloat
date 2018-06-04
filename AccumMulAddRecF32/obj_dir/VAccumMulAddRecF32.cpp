@@ -102,7 +102,7 @@ void VAccumMulAddRecF32::_initial__TOP__2(VAccumMulAddRecF32__Syms* __restrict v
     VL_DEBUG_IF(VL_DBG_MSGF("+    VAccumMulAddRecF32::_initial__TOP__2\n"); );
     VAccumMulAddRecF32* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
-    // INITIAL at AccumMulAddRecF32.v:2043
+    // INITIAL at AccumMulAddRecF32.v:2042
     vlTOPp->AccumMulAddRecF32__DOT__accum = (VL_ULL(0x1ffffffff) 
 					     & (((QData)((IData)(
 								 VL_RANDOM_I(32))) 
@@ -143,9 +143,9 @@ VL_INLINE_OPT void VAccumMulAddRecF32::_sequent__TOP__3(VAccumMulAddRecF32__Syms
     VL_SIGW(__Vtemp58,95,0,3);
     VL_SIGW(__Vtemp59,95,0,3);
     // Body
-    // ALWAYS at AccumMulAddRecF32.v:2162
+    // ALWAYS at AccumMulAddRecF32.v:2160
     vlTOPp->AccumMulAddRecF32__DOT__accum = ((IData)(vlTOPp->reset)
-					      ? VL_ULL(0x60e00001)
+					      ? VL_ULL(0x142000001)
 					      : vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T156);
     vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T114 
 	= ((3U == (3U & (IData)((vlTOPp->AccumMulAddRecF32__DOT__accum 
@@ -165,59 +165,50 @@ VL_INLINE_OPT void VAccumMulAddRecF32::_sequent__TOP__3(VAccumMulAddRecF32__Syms
 	= (0xfffU & ((IData)(0xffU) + (0x1ffU & (IData)(
 							(vlTOPp->AccumMulAddRecF32__DOT__accum 
 							 >> 0x17U)))));
-    vlTOPp->io_out2 = (QData)((IData)(((0x80000000U 
-					& ((IData)(
-						   (vlTOPp->AccumMulAddRecF32__DOT__accum 
-						    >> 0x20U)) 
-					   << 0x1fU)) 
-				       | ((0x7f800000U 
-					   & (((VL_GTS_III(1,10,10, 0x82U, 
-							   (0x1ffU 
-							    & (IData)(
-								      (vlTOPp->AccumMulAddRecF32__DOT__accum 
-								       >> 0x17U))))
-						 ? 0U
-						 : 
-						((0x1ffU 
-						  & (IData)(
-							    (vlTOPp->AccumMulAddRecF32__DOT__accum 
-							     >> 0x17U))) 
-						 - (IData)(0x81U))) 
-					       | VL_NEGATE_I(
-							     (((3U 
-								== 
-								(3U 
-								 & (IData)(
-									   (vlTOPp->AccumMulAddRecF32__DOT__accum 
-									    >> 0x1eU)))) 
-							       & (IData)(
-									 (vlTOPp->AccumMulAddRecF32__DOT__accum 
-									  >> 0x1dU))) 
-							      | (IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T114)))) 
-					      << 0x17U)) 
-					  | (0x7fffffU 
-					     & (VL_GTS_III(1,10,10, 0x82U, 
-							   (0x1ffU 
-							    & (IData)(
-								      (vlTOPp->AccumMulAddRecF32__DOT__accum 
-								       >> 0x17U))))
-						 ? 
-						(0xffffffU 
-						 & ((0xffffffU 
-						     & (vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T140 
-							>> 1U)) 
-						    >> 
-						    (0x1fU 
-						     & ((IData)(1U) 
-							- 
-							(0x1ffU 
+    vlTOPp->io_out2 = ((0x80000000U & ((IData)((vlTOPp->AccumMulAddRecF32__DOT__accum 
+						>> 0x20U)) 
+				       << 0x1fU)) | 
+		       ((0x7f800000U & (((VL_GTS_III(1,10,10, 0x82U, 
+						     (0x1ffU 
+						      & (IData)(
+								(vlTOPp->AccumMulAddRecF32__DOT__accum 
+								 >> 0x17U))))
+					   ? 0U : (
+						   (0x1ffU 
+						    & (IData)(
+							      (vlTOPp->AccumMulAddRecF32__DOT__accum 
+							       >> 0x17U))) 
+						   - (IData)(0x81U))) 
+					 | VL_NEGATE_I(
+						       (((3U 
+							  == 
+							  (3U 
+							   & (IData)(
+								     (vlTOPp->AccumMulAddRecF32__DOT__accum 
+								      >> 0x1eU)))) 
 							 & (IData)(
 								   (vlTOPp->AccumMulAddRecF32__DOT__accum 
-								    >> 0x17U)))))))
-						 : 
-						((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T114)
-						  ? 0U
-						  : vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T140)))))));
+								    >> 0x1dU))) 
+							| (IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T114)))) 
+					<< 0x17U)) 
+			| (0x7fffffU & (VL_GTS_III(1,10,10, 0x82U, 
+						   (0x1ffU 
+						    & (IData)(
+							      (vlTOPp->AccumMulAddRecF32__DOT__accum 
+							       >> 0x17U))))
+					 ? (0xffffffU 
+					    & ((0xffffffU 
+						& (vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T140 
+						   >> 1U)) 
+					       >> (0x1fU 
+						   & ((IData)(1U) 
+						      - 
+						      (0x1ffU 
+						       & (IData)(
+								 (vlTOPp->AccumMulAddRecF32__DOT__accum 
+								  >> 0x17U)))))))
+					 : ((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T114)
+					     ? 0U : vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T140)))));
     vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_postMul__DOT__T316 
 	= ((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T122) 
 	   & (~ (vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T140 
@@ -1062,59 +1053,50 @@ void VAccumMulAddRecF32::_settle__TOP__4(VAccumMulAddRecF32__Syms* __restrict vl
 	= (0xfffU & ((IData)(0xffU) + (0x1ffU & (IData)(
 							(vlTOPp->AccumMulAddRecF32__DOT__accum 
 							 >> 0x17U)))));
-    vlTOPp->io_out2 = (QData)((IData)(((0x80000000U 
-					& ((IData)(
-						   (vlTOPp->AccumMulAddRecF32__DOT__accum 
-						    >> 0x20U)) 
-					   << 0x1fU)) 
-				       | ((0x7f800000U 
-					   & (((VL_GTS_III(1,10,10, 0x82U, 
-							   (0x1ffU 
-							    & (IData)(
-								      (vlTOPp->AccumMulAddRecF32__DOT__accum 
-								       >> 0x17U))))
-						 ? 0U
-						 : 
-						((0x1ffU 
-						  & (IData)(
-							    (vlTOPp->AccumMulAddRecF32__DOT__accum 
-							     >> 0x17U))) 
-						 - (IData)(0x81U))) 
-					       | VL_NEGATE_I(
-							     (((3U 
-								== 
-								(3U 
-								 & (IData)(
-									   (vlTOPp->AccumMulAddRecF32__DOT__accum 
-									    >> 0x1eU)))) 
-							       & (IData)(
-									 (vlTOPp->AccumMulAddRecF32__DOT__accum 
-									  >> 0x1dU))) 
-							      | (IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T114)))) 
-					      << 0x17U)) 
-					  | (0x7fffffU 
-					     & (VL_GTS_III(1,10,10, 0x82U, 
-							   (0x1ffU 
-							    & (IData)(
-								      (vlTOPp->AccumMulAddRecF32__DOT__accum 
-								       >> 0x17U))))
-						 ? 
-						(0xffffffU 
-						 & ((0xffffffU 
-						     & (vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T140 
-							>> 1U)) 
-						    >> 
-						    (0x1fU 
-						     & ((IData)(1U) 
-							- 
-							(0x1ffU 
+    vlTOPp->io_out2 = ((0x80000000U & ((IData)((vlTOPp->AccumMulAddRecF32__DOT__accum 
+						>> 0x20U)) 
+				       << 0x1fU)) | 
+		       ((0x7f800000U & (((VL_GTS_III(1,10,10, 0x82U, 
+						     (0x1ffU 
+						      & (IData)(
+								(vlTOPp->AccumMulAddRecF32__DOT__accum 
+								 >> 0x17U))))
+					   ? 0U : (
+						   (0x1ffU 
+						    & (IData)(
+							      (vlTOPp->AccumMulAddRecF32__DOT__accum 
+							       >> 0x17U))) 
+						   - (IData)(0x81U))) 
+					 | VL_NEGATE_I(
+						       (((3U 
+							  == 
+							  (3U 
+							   & (IData)(
+								     (vlTOPp->AccumMulAddRecF32__DOT__accum 
+								      >> 0x1eU)))) 
 							 & (IData)(
 								   (vlTOPp->AccumMulAddRecF32__DOT__accum 
-								    >> 0x17U)))))))
-						 : 
-						((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T114)
-						  ? 0U
-						  : vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T140)))))));
+								    >> 0x1dU))) 
+							| (IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T114)))) 
+					<< 0x17U)) 
+			| (0x7fffffU & (VL_GTS_III(1,10,10, 0x82U, 
+						   (0x1ffU 
+						    & (IData)(
+							      (vlTOPp->AccumMulAddRecF32__DOT__accum 
+							       >> 0x17U))))
+					 ? (0xffffffU 
+					    & ((0xffffffU 
+						& (vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T140 
+						   >> 1U)) 
+					       >> (0x1fU 
+						   & ((IData)(1U) 
+						      - 
+						      (0x1ffU 
+						       & (IData)(
+								 (vlTOPp->AccumMulAddRecF32__DOT__accum 
+								  >> 0x17U)))))))
+					 : ((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T114)
+					     ? 0U : vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T140)))));
     vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_postMul__DOT__T316 
 	= ((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T122) 
 	   & (~ (vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T140 
@@ -1957,7 +1939,7 @@ void VAccumMulAddRecF32::_ctor_var_reset() {
     clk = VL_RAND_RESET_I(1);
     reset = VL_RAND_RESET_I(1);
     io_out = VL_RAND_RESET_Q(33);
-    io_out2 = VL_RAND_RESET_Q(33);
+    io_out2 = VL_RAND_RESET_I(32);
     io_out3 = VL_RAND_RESET_I(32);
     io_ignore = VL_RAND_RESET_I(5);
     AccumMulAddRecF32__DOT__accum = VL_RAND_RESET_Q(33);

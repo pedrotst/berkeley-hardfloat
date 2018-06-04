@@ -24,9 +24,9 @@ VL_MODULE(VAccumMulAddRecF32) {
     VL_IN8(clk,0,0);
     VL_IN8(reset,0,0);
     VL_OUT8(io_ignore,4,0);
+    VL_OUT(io_out2,31,0);
     VL_OUT(io_out3,31,0);
     VL_OUT64(io_out,32,0);
-    VL_OUT64(io_out2,32,0);
     
     // LOCAL SIGNALS
     // Internals; generally not touched by application code

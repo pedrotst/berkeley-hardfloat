@@ -349,12 +349,12 @@ class MulAddRecFN(expWidth: Int, sigWidth: Int) extends Module
 
 class AccumMulAddRecF32 extends Module
 {
-    val regInit1 = UInt("b0100000011000000000000000000001")
+    val regInit1 = UInt("b0_1000_0001_1000_0000_0000_0000_0000_0001")
     val regInit = recFNFromFN(8,24,regInit1)
     val accum = RegInit(regInit)
     val io = new Bundle {
         val out = Bits(OUTPUT, 33)
-        val out2 = Bits(OUTPUT, 33)
+        val out2 = Bits(OUTPUT, 32)
         val out3 = Bits(OUTPUT, 32)
         val ignore = Bits(OUTPUT, 5)
     }
@@ -362,7 +362,7 @@ class AccumMulAddRecF32 extends Module
     mulAdd.io.op := UInt(0)
     mulAdd.io.a := accum
     mulAdd.io.c := UInt(0)
-    mulAdd.io.b := UInt("b001111111100000000000000000000000")
+    mulAdd.io.b := UInt("b0_0111_1111_1000_0000_0000_0000_0000_0000")
     mulAdd.io.roundingMode := UInt(0)
     mulAdd.io.detectTininess := UInt(0)
     io.ignore := mulAdd.io.exceptionFlags

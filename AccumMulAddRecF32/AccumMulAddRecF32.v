@@ -1931,7 +1931,7 @@ endmodule
 
 module AccumMulAddRecF32(input clk, input reset,
     output[32:0] io_out,
-    output[32:0] io_out2,
+    output[31:0] io_out2,
     output[31:0] io_out3,
     output[4:0] io_ignore
 );
@@ -1993,7 +1993,6 @@ module AccumMulAddRecF32(input clk, input reset,
   wire[7:0] T49;
   wire T50;
   wire T51;
-  wire[32:0] T94;
   wire[31:0] T52;
   wire[30:0] T53;
   wire[22:0] T54;
@@ -2024,7 +2023,7 @@ module AccumMulAddRecF32(input clk, input reset,
   wire T79;
   wire[7:0] T80;
   wire[7:0] T81;
-  wire[7:0] T95;
+  wire[7:0] T94;
   wire T82;
   wire T83;
   wire T84;
@@ -2050,10 +2049,10 @@ module AccumMulAddRecF32(input clk, input reset,
   assign regInit = {T6, T0};
   assign T0 = {T3, T1};
   assign T1 = T2[22:0];
-  assign T2 = 25'he00001;
+  assign T2 = 25'h800001;
   assign T3 = T4[5:0];
   assign T4 = T5;
-  assign T5 = 10'hc1;
+  assign T5 = 10'h84;
   assign T6 = {T12, T7};
   assign T7 = T9 | T91;
   assign T91 = {2'h0, T8};
@@ -2061,7 +2060,7 @@ module AccumMulAddRecF32(input clk, input reset,
   assign T9 = T11 ? 3'h0 : T10;
   assign T10 = T4[8:6];
   assign T11 = 1'h0;
-  assign T12 = 1'h0;
+  assign T12 = 1'h1;
   assign T92 = reset ? regInit : mulAdd_io_out;
   assign io_ignore = mulAdd_io_exceptionFlags;
   assign io_out3 = T13;
@@ -2105,8 +2104,7 @@ module AccumMulAddRecF32(input clk, input reset,
   assign T49 = T36[7:0];
   assign T50 = T51;
   assign T51 = mulAdd_io_out[32];
-  assign io_out2 = T94;
-  assign T94 = {1'h0, T52};
+  assign io_out2 = T52;
   assign T52 = {T89, T53};
   assign T53 = {T80, T54};
   assign T54 = T79 ? T71 : T55;
@@ -2136,8 +2134,8 @@ module AccumMulAddRecF32(input clk, input reset,
   assign T78 = T57 >> 1'h1;
   assign T79 = $signed(T75) < $signed(9'h82);
   assign T80 = T86 | T81;
-  assign T81 = 8'h0 - T95;
-  assign T95 = {7'h0, T82};
+  assign T81 = 8'h0 - T94;
+  assign T94 = {7'h0, T82};
   assign T82 = T83 | T65;
   assign T83 = T84;
   assign T84 = T69 & T85;
