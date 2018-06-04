@@ -148,7 +148,6 @@ VL_INLINE_OPT void VAccumMulAddRecF32::_sequent__TOP__3(VAccumMulAddRecF32__Syms
     vlTOPp->AccumMulAddRecF32__DOT__accum = ((IData)(vlTOPp->reset)
 					      ? VL_ULL(0x60fff86a)
 					      : vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T156);
-    vlTOPp->io_out = vlTOPp->AccumMulAddRecF32__DOT__accum;
     vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T114 
 	= ((3U == (3U & (IData)((vlTOPp->AccumMulAddRecF32__DOT__accum 
 				 >> 0x1eU)))) & (~ (IData)(
@@ -900,6 +899,7 @@ VL_INLINE_OPT void VAccumMulAddRecF32::_sequent__TOP__3(VAccumMulAddRecF32__Syms
 						   (vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T90 
 						    >> 1U)
 						    : vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T90)))))));
+    vlTOPp->io_out = vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T156;
     vlTOPp->AccumMulAddRecF32__DOT__T20 = (((0U != 
 					     (7U & (IData)(
 							   (vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T156 
@@ -992,7 +992,6 @@ void VAccumMulAddRecF32::_settle__TOP__4(VAccumMulAddRecF32__Syms* __restrict vl
     VL_SIGW(__Vtemp118,95,0,3);
     VL_SIGW(__Vtemp119,95,0,3);
     // Body
-    vlTOPp->io_out = vlTOPp->AccumMulAddRecF32__DOT__accum;
     vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T114 
 	= ((3U == (3U & (IData)((vlTOPp->AccumMulAddRecF32__DOT__accum 
 				 >> 0x1eU)))) & (~ (IData)(
@@ -1730,6 +1729,7 @@ void VAccumMulAddRecF32::_settle__TOP__4(VAccumMulAddRecF32__Syms* __restrict vl
 						   (vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T90 
 						    >> 1U)
 						    : vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T90)))))));
+    vlTOPp->io_out = vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T156;
     vlTOPp->AccumMulAddRecF32__DOT__T20 = (((0U != 
 					     (7U & (IData)(
 							   (vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T156 

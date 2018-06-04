@@ -359,7 +359,6 @@ class AccumMulAddRecF32 extends Module
         val ignore = Bits(OUTPUT, 5)
     }
     io.out2 := regInit
-    io.out := accum
     val mulAdd = Module(new MulAddRecFN(8, 24))
     mulAdd.io.op := UInt(0)
     mulAdd.io.a := accum
@@ -368,6 +367,7 @@ class AccumMulAddRecF32 extends Module
     mulAdd.io.roundingMode := UInt(0)
     mulAdd.io.detectTininess := UInt(0)
     io.ignore := mulAdd.io.exceptionFlags
+    io.out := mulAdd.io.out
     io.out3 := fNFromRecFN(8,24,mulAdd.io.out)
     accum := mulAdd.io.out
 }

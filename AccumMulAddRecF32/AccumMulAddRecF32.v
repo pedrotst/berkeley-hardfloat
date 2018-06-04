@@ -2065,7 +2065,7 @@ module AccumMulAddRecF32(input clk, input reset,
   assign T50 = T51;
   assign T51 = mulAdd_io_out[32];
   assign io_out2 = regInit;
-  assign io_out = accum;
+  assign io_out = mulAdd_io_out;
   MulAddRecFN mulAdd(
        .io_op( 2'h0 ),
        .io_a( accum ),
