@@ -145,7 +145,7 @@ VL_INLINE_OPT void VAccumMulAddRecF32::_sequent__TOP__3(VAccumMulAddRecF32__Syms
     // Body
     // ALWAYS at AccumMulAddRecF32.v:2160
     vlTOPp->AccumMulAddRecF32__DOT__accum = ((IData)(vlTOPp->reset)
-					      ? VL_ULL(0x142000001)
+					      ? VL_ULL(0x41400001)
 					      : vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T156);
     vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T114 
 	= ((3U == (3U & (IData)((vlTOPp->AccumMulAddRecF32__DOT__accum 

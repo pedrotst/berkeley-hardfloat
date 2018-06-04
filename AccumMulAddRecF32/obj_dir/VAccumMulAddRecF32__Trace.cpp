@@ -5971,7 +5971,7 @@ void VAccumMulAddRecF32::traceChgThis__4(VAccumMulAddRecF32__Syms* __restrict vl
 	vcdp->chgBus  (c+683,(vlTOPp->io_out3),32);
 	vcdp->chgBus  (c+684,(vlTOPp->io_ignore),5);
 	vcdp->chgQuad (c+685,(((IData)(vlTOPp->reset)
-			        ? VL_ULL(0x142000001)
+			        ? VL_ULL(0x41400001)
 			        : vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T156)),33);
     }
 }

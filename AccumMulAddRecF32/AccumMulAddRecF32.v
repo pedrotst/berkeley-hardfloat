@@ -2049,10 +2049,10 @@ module AccumMulAddRecF32(input clk, input reset,
   assign regInit = {T6, T0};
   assign T0 = {T3, T1};
   assign T1 = T2[22:0];
-  assign T2 = 25'h800001;
+  assign T2 = 25'hc00001;
   assign T3 = T4[5:0];
   assign T4 = T5;
-  assign T5 = 10'h84;
+  assign T5 = 10'h82;
   assign T6 = {T12, T7};
   assign T7 = T9 | T91;
   assign T91 = {2'h0, T8};
@@ -2060,7 +2060,7 @@ module AccumMulAddRecF32(input clk, input reset,
   assign T9 = T11 ? 3'h0 : T10;
   assign T10 = T4[8:6];
   assign T11 = 1'h0;
-  assign T12 = 1'h1;
+  assign T12 = 1'h0;
   assign T92 = reset ? regInit : mulAdd_io_out;
   assign io_ignore = mulAdd_io_exceptionFlags;
   assign io_out3 = T13;
