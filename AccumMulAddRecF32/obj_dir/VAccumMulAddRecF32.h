@@ -30,6 +30,7 @@ VL_MODULE(VAccumMulAddRecF32) {
     
     // LOCAL SIGNALS
     // Internals; generally not touched by application code
+    VL_SIG8(AccumMulAddRecF32__DOT__T27,0,0);
     VL_SIG8(AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T3,6,0);
     VL_SIG8(AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__CAlignDist,6,0);
     VL_SIG8(AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__isMinCAlign,0,0);
@@ -45,7 +46,6 @@ VL_MODULE(VAccumMulAddRecF32) {
     VL_SIG8(AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__isNaNOut,0,0);
     VL_SIG8(AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__overflow,0,0);
     VL_SIG8(AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__notNaN_isInfOut,0,0);
-    VL_SIG8(AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__signOut,0,0);
     VL_SIG16(AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__sNatCAlignDist,11,0);
     VL_SIG16(AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T16,11,0);
     VL_SIG16(AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_postMul__DOT__T153,15,0);
@@ -56,6 +56,7 @@ VL_MODULE(VAccumMulAddRecF32) {
     VL_SIG16(AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T61,15,0);
     VL_SIG16(AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T65,15,0);
     VL_SIG16(AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T86,12,0);
+    VL_SIG(AccumMulAddRecF32__DOT__T20,23,0);
     VL_SIG(AccumMulAddRecF32__DOT__initvar,31,0);
     VL_SIGW(AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__alignedSigC,75,0,3);
     VL_SIGW(AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__mainAlignedSigC,77,0,3);
@@ -73,6 +74,7 @@ VL_MODULE(VAccumMulAddRecF32) {
     VL_SIG64(AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddResult,49,0);
     VL_SIG64(AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_postMul__DOT__notCDom_absSigSum,50,0);
     VL_SIG64(AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_postMul__DOT__CDom_absSigSum,49,0);
+    VL_SIG64(AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T156,32,0);
     
     // LOCAL VARIABLES
     // Internals; generally not touched by application code
@@ -122,9 +124,10 @@ VL_MODULE(VAccumMulAddRecF32) {
   public:
     static void _eval_initial(VAccumMulAddRecF32__Syms* __restrict vlSymsp);
     static void _eval_settle(VAccumMulAddRecF32__Syms* __restrict vlSymsp);
-    static void _initial__TOP__1(VAccumMulAddRecF32__Syms* __restrict vlSymsp);
+    static void _initial__TOP__2(VAccumMulAddRecF32__Syms* __restrict vlSymsp);
     static void _sequent__TOP__3(VAccumMulAddRecF32__Syms* __restrict vlSymsp);
-    static void _settle__TOP__2(VAccumMulAddRecF32__Syms* __restrict vlSymsp);
+    static void _settle__TOP__1(VAccumMulAddRecF32__Syms* __restrict vlSymsp);
+    static void _settle__TOP__4(VAccumMulAddRecF32__Syms* __restrict vlSymsp);
     static void traceChgThis(VAccumMulAddRecF32__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
     static void traceChgThis__2(VAccumMulAddRecF32__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);
     static void traceChgThis__3(VAccumMulAddRecF32__Syms* __restrict vlSymsp, VerilatedVcd* vcdp, uint32_t code);

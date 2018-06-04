@@ -91,13 +91,19 @@ void VAccumMulAddRecF32::_eval_initial_loop(VAccumMulAddRecF32__Syms* __restrict
 //--------------------
 // Internal Methods
 
-void VAccumMulAddRecF32::_initial__TOP__1(VAccumMulAddRecF32__Syms* __restrict vlSymsp) {
-    VL_DEBUG_IF(VL_DBG_MSGF("+    VAccumMulAddRecF32::_initial__TOP__1\n"); );
+void VAccumMulAddRecF32::_settle__TOP__1(VAccumMulAddRecF32__Syms* __restrict vlSymsp) {
+    VL_DEBUG_IF(VL_DBG_MSGF("+    VAccumMulAddRecF32::_settle__TOP__1\n"); );
     VAccumMulAddRecF32* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
-    // INITIAL at AccumMulAddRecF32.v:2012
-    vlTOPp->io_out3 = 0x6aU;
-    // INITIAL at AccumMulAddRecF32.v:1976
+    vlTOPp->io_out2 = VL_ULL(0x60fff86a);
+    vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T3 = 0U;
+}
+
+void VAccumMulAddRecF32::_initial__TOP__2(VAccumMulAddRecF32__Syms* __restrict vlSymsp) {
+    VL_DEBUG_IF(VL_DBG_MSGF("+    VAccumMulAddRecF32::_initial__TOP__2\n"); );
+    VAccumMulAddRecF32* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
+    // Body
+    // INITIAL at AccumMulAddRecF32.v:2002
     vlTOPp->AccumMulAddRecF32__DOT__accum = (VL_ULL(0x1ffffffff) 
 					     & (((QData)((IData)(
 								 VL_RANDOM_I(32))) 
@@ -106,8 +112,8 @@ void VAccumMulAddRecF32::_initial__TOP__1(VAccumMulAddRecF32__Syms* __restrict v
 								  VL_RANDOM_I(32)))));
 }
 
-void VAccumMulAddRecF32::_settle__TOP__2(VAccumMulAddRecF32__Syms* __restrict vlSymsp) {
-    VL_DEBUG_IF(VL_DBG_MSGF("+    VAccumMulAddRecF32::_settle__TOP__2\n"); );
+VL_INLINE_OPT void VAccumMulAddRecF32::_sequent__TOP__3(VAccumMulAddRecF32__Syms* __restrict vlSymsp) {
+    VL_DEBUG_IF(VL_DBG_MSGF("+    VAccumMulAddRecF32::_sequent__TOP__3\n"); );
     VAccumMulAddRecF32* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Variables
     VL_SIGW(__Vtemp2,95,0,3);
@@ -138,8 +144,10 @@ void VAccumMulAddRecF32::_settle__TOP__2(VAccumMulAddRecF32__Syms* __restrict vl
     VL_SIGW(__Vtemp58,95,0,3);
     VL_SIGW(__Vtemp59,95,0,3);
     // Body
-    vlTOPp->io_out2 = VL_ULL(0x38d40000);
-    vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T3 = 0U;
+    // ALWAYS at AccumMulAddRecF32.v:2080
+    vlTOPp->AccumMulAddRecF32__DOT__accum = ((IData)(vlTOPp->reset)
+					      ? VL_ULL(0x60fff86a)
+					      : vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T156);
     vlTOPp->io_out = vlTOPp->AccumMulAddRecF32__DOT__accum;
     vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T114 
 	= ((3U == (3U & (IData)((vlTOPp->AccumMulAddRecF32__DOT__accum 
@@ -156,9 +164,9 @@ void VAccumMulAddRecF32::_settle__TOP__2(VAccumMulAddRecF32__Syms* __restrict vl
 				  >> 0x1dU)))) << 0x17U) 
 	   | (0x7fffffU & (IData)(vlTOPp->AccumMulAddRecF32__DOT__accum)));
     vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T16 
-	= (0xfffU & ((IData)(0x100U) + (0x1ffU & (IData)(
-							 (vlTOPp->AccumMulAddRecF32__DOT__accum 
-							  >> 0x17U)))));
+	= (0xfffU & ((IData)(0xffU) + (0x1ffU & (IData)(
+							(vlTOPp->AccumMulAddRecF32__DOT__accum 
+							 >> 0x17U)))));
     vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_postMul__DOT__T316 
 	= ((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T122) 
 	   & (~ (vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T140 
@@ -213,15 +221,19 @@ void VAccumMulAddRecF32::_settle__TOP__2(VAccumMulAddRecF32__Syms* __restrict vl
 							      (vlTOPp->AccumMulAddRecF32__DOT__accum 
 							       >> 0x20U)))
 						    ? 
-						   (7U 
-						    == 
-						    (7U 
-						     & vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__mainAlignedSigC[0U]))
+						   ((7U 
+						     == 
+						     (7U 
+						      & vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__mainAlignedSigC[0U])) 
+						    & (0U 
+						       == (IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T3)))
 						    : 
-						   (0U 
-						    != 
-						    (7U 
-						     & vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__mainAlignedSigC[0U]))));
+						   ((0U 
+						     != 
+						     (7U 
+						      & vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__mainAlignedSigC[0U])) 
+						    | (0U 
+						       != (IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T3)))));
     vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__alignedSigC[1U] 
 	= ((1U & (__Vtemp7[0U] >> 0x1fU)) | (0xfffffffeU 
 					     & (__Vtemp7[1U] 
@@ -669,24 +681,6 @@ void VAccumMulAddRecF32::_settle__TOP__2(VAccumMulAddRecF32__Syms* __restrict vl
 				       << 0x1eU)) | 
 		       (0x3fffff00U & (__Vtemp23[1U] 
 				       >> 2U)))));
-    vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__signOut 
-	= ((~ (IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__isNaNOut)) 
-	   & (((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T114) 
-	       & (IData)((vlTOPp->AccumMulAddRecF32__DOT__accum 
-			  >> 0x20U))) | (((~ (IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T114)) 
-					  & (0U != 
-					     (7U & (IData)(
-							   (vlTOPp->AccumMulAddRecF32__DOT__accum 
-							    >> 0x1dU))))) 
-					 & ((0U != 
-					     (3U & 
-					      (vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_postMul__DOT__notCDom_sig 
-					       >> 0x19U))) 
-					    & ((IData)(
-						       (vlTOPp->AccumMulAddRecF32__DOT__accum 
-							>> 0x20U)) 
-					       ^ (vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_postMul__DOT__sigSum[1U] 
-						  >> 0x13U))))));
     vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_postMul__DOT__T312 
 	= ((0U == (7U & (IData)((vlTOPp->AccumMulAddRecF32__DOT__accum 
 				 >> 0x1dU)))) | (0U 
@@ -836,9 +830,6 @@ void VAccumMulAddRecF32::_settle__TOP__2(VAccumMulAddRecF32__Syms* __restrict vl
     vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__overflow 
 	= ((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__commonCase) 
 	   & VL_LTES_III(1,6,6, 3U, (0x3fU & VL_SHIFTRS_III(13,13,3, (IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T86), 7U))));
-    vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__notNaN_isInfOut 
-	= ((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T114) 
-	   | (IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__overflow));
     vlTOPp->io_ignore = (((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_postMul__DOT__T316) 
 			  << 4U) | (((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__overflow) 
 				     << 2U) | ((((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__commonCase) 
@@ -858,10 +849,119 @@ void VAccumMulAddRecF32::_settle__TOP__2(VAccumMulAddRecF32__Syms* __restrict vl
 						  | ((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__commonCase) 
 						     & (VL_GTS_III(1,13,13, 0x6bU, (IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T86)) 
 							| (IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T5)))))));
+    vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__notNaN_isInfOut 
+	= ((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T114) 
+	   | (IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__overflow));
+    vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T156 
+	= (((QData)((IData)(((~ (IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__isNaNOut)) 
+			     & (((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T114) 
+				 & (IData)((vlTOPp->AccumMulAddRecF32__DOT__accum 
+					    >> 0x20U))) 
+				| (((~ (IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T114)) 
+				    & (0U != (7U & (IData)(
+							   (vlTOPp->AccumMulAddRecF32__DOT__accum 
+							    >> 0x1dU))))) 
+				   & ((0U != (3U & 
+					      (vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_postMul__DOT__notCDom_sig 
+					       >> 0x19U))) 
+				      & ((IData)((vlTOPp->AccumMulAddRecF32__DOT__accum 
+						  >> 0x20U)) 
+					 ^ (vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_postMul__DOT__sigSum[1U] 
+					    >> 0x13U)))))))) 
+	    << 0x20U) | (QData)((IData)(((0xff800000U 
+					  & ((((((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T86) 
+						 & (~ 
+						    (((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_postMul__DOT__T312) 
+						      | VL_GTS_III(1,13,13, 0x6bU, (IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T86)))
+						      ? 0x1c0U
+						      : 0U))) 
+						& (~ 
+						   ((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__notNaN_isInfOut)
+						     ? 0x40U
+						     : 0U))) 
+					       | ((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__notNaN_isInfOut)
+						   ? 0x180U
+						   : 0U)) 
+					      | ((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__isNaNOut)
+						  ? 0x1c0U
+						  : 0U)) 
+					     << 0x17U)) 
+					 | (0x7fffffU 
+					    & ((((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__isNaNOut) 
+						 | (IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_postMul__DOT__T312)) 
+						| VL_GTS_III(1,13,13, 0x6bU, (IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T86)))
+					        ? ((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__isNaNOut)
+						    ? 0x400000U
+						    : 0U)
+					        : (
+						   (0x4000000U 
+						    & vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_postMul__DOT__notCDom_sig)
+						    ? 
+						   (vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T90 
+						    >> 1U)
+						    : vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T90)))))));
+    vlTOPp->AccumMulAddRecF32__DOT__T20 = (((0U != 
+					     (7U & (IData)(
+							   (vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T156 
+							    >> 0x1dU)))) 
+					    << 0x17U) 
+					   | (0x7fffffU 
+					      & (IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T156)));
+    vlTOPp->AccumMulAddRecF32__DOT__T27 = ((3U == (3U 
+						   & (IData)(
+							     (vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T156 
+							      >> 0x1eU)))) 
+					   & (~ (IData)(
+							(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T156 
+							 >> 0x1dU))));
+    vlTOPp->io_out3 = ((0x80000000U & ((IData)((vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T156 
+						>> 0x20U)) 
+				       << 0x1fU)) | 
+		       ((0x7f800000U & (((VL_GTS_III(1,10,10, 0x82U, 
+						     (0x1ffU 
+						      & (IData)(
+								(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T156 
+								 >> 0x17U))))
+					   ? 0U : (
+						   (0x1ffU 
+						    & (IData)(
+							      (vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T156 
+							       >> 0x17U))) 
+						   - (IData)(0x81U))) 
+					 | VL_NEGATE_I(
+						       (((3U 
+							  == 
+							  (3U 
+							   & (IData)(
+								     (vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T156 
+								      >> 0x1eU)))) 
+							 & (IData)(
+								   (vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T156 
+								    >> 0x1dU))) 
+							| (IData)(vlTOPp->AccumMulAddRecF32__DOT__T27)))) 
+					<< 0x17U)) 
+			| (0x7fffffU & (VL_GTS_III(1,10,10, 0x82U, 
+						   (0x1ffU 
+						    & (IData)(
+							      (vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T156 
+							       >> 0x17U))))
+					 ? (0xffffffU 
+					    & ((0xffffffU 
+						& (vlTOPp->AccumMulAddRecF32__DOT__T20 
+						   >> 1U)) 
+					       >> (0x1fU 
+						   & ((IData)(1U) 
+						      - 
+						      (0x1ffU 
+						       & (IData)(
+								 (vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T156 
+								  >> 0x17U)))))))
+					 : ((IData)(vlTOPp->AccumMulAddRecF32__DOT__T27)
+					     ? 0U : vlTOPp->AccumMulAddRecF32__DOT__T20)))));
 }
 
-VL_INLINE_OPT void VAccumMulAddRecF32::_sequent__TOP__3(VAccumMulAddRecF32__Syms* __restrict vlSymsp) {
-    VL_DEBUG_IF(VL_DBG_MSGF("+    VAccumMulAddRecF32::_sequent__TOP__3\n"); );
+void VAccumMulAddRecF32::_settle__TOP__4(VAccumMulAddRecF32__Syms* __restrict vlSymsp) {
+    VL_DEBUG_IF(VL_DBG_MSGF("+    VAccumMulAddRecF32::_settle__TOP__4\n"); );
     VAccumMulAddRecF32* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Variables
     VL_SIGW(__Vtemp62,95,0,3);
@@ -892,45 +992,6 @@ VL_INLINE_OPT void VAccumMulAddRecF32::_sequent__TOP__3(VAccumMulAddRecF32__Syms
     VL_SIGW(__Vtemp118,95,0,3);
     VL_SIGW(__Vtemp119,95,0,3);
     // Body
-    // ALWAYS at AccumMulAddRecF32.v:2026
-    vlTOPp->AccumMulAddRecF32__DOT__accum = ((IData)(vlTOPp->reset)
-					      ? VL_ULL(0x38d40000)
-					      : (((QData)((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__signOut)) 
-						  << 0x20U) 
-						 | (QData)((IData)(
-								   ((0xff800000U 
-								     & ((((((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T86) 
-									    & (~ 
-									       (((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_postMul__DOT__T312) 
-										| VL_GTS_III(1,13,13, 0x6bU, (IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T86)))
-										 ? 0x1c0U
-										 : 0U))) 
-									   & (~ 
-									      ((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__notNaN_isInfOut)
-									        ? 0x40U
-									        : 0U))) 
-									  | ((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__notNaN_isInfOut)
-									      ? 0x180U
-									      : 0U)) 
-									 | ((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__isNaNOut)
-									     ? 0x1c0U
-									     : 0U)) 
-									<< 0x17U)) 
-								    | (0x7fffffU 
-								       & ((((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__isNaNOut) 
-									    | (IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_postMul__DOT__T312)) 
-									   | VL_GTS_III(1,13,13, 0x6bU, (IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T86)))
-									   ? 
-									  ((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__isNaNOut)
-									    ? 0x400000U
-									    : 0U)
-									   : 
-									  ((0x4000000U 
-									    & vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_postMul__DOT__notCDom_sig)
-									    ? 
-									   (vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T90 
-									    >> 1U)
-									    : vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T90))))))));
     vlTOPp->io_out = vlTOPp->AccumMulAddRecF32__DOT__accum;
     vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T114 
 	= ((3U == (3U & (IData)((vlTOPp->AccumMulAddRecF32__DOT__accum 
@@ -947,9 +1008,9 @@ VL_INLINE_OPT void VAccumMulAddRecF32::_sequent__TOP__3(VAccumMulAddRecF32__Syms
 				  >> 0x1dU)))) << 0x17U) 
 	   | (0x7fffffU & (IData)(vlTOPp->AccumMulAddRecF32__DOT__accum)));
     vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T16 
-	= (0xfffU & ((IData)(0x100U) + (0x1ffU & (IData)(
-							 (vlTOPp->AccumMulAddRecF32__DOT__accum 
-							  >> 0x17U)))));
+	= (0xfffU & ((IData)(0xffU) + (0x1ffU & (IData)(
+							(vlTOPp->AccumMulAddRecF32__DOT__accum 
+							 >> 0x17U)))));
     vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_postMul__DOT__T316 
 	= ((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T122) 
 	   & (~ (vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T140 
@@ -1000,11 +1061,9 @@ VL_INLINE_OPT void VAccumMulAddRecF32::_sequent__TOP__3(VAccumMulAddRecF32__Syms
     vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__alignedSigC[0U] 
 	= ((0xfffffffeU & (__Vtemp67[0U] << 1U)) | 
 	   ((1U & (IData)((vlTOPp->AccumMulAddRecF32__DOT__accum 
-			   >> 0x20U))) ? ((7U == (7U 
-						  & vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__mainAlignedSigC[0U])) 
-					  & (0U == (IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T3)))
-	     : ((0U != (7U & vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__mainAlignedSigC[0U])) 
-		| (0U != (IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T3)))));
+			   >> 0x20U))) ? (7U == (7U 
+						 & vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__mainAlignedSigC[0U]))
+	     : (0U != (7U & vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__mainAlignedSigC[0U]))));
     vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__alignedSigC[1U] 
 	= ((1U & (__Vtemp67[0U] >> 0x1fU)) | (0xfffffffeU 
 					      & (__Vtemp67[1U] 
@@ -1452,24 +1511,6 @@ VL_INLINE_OPT void VAccumMulAddRecF32::_sequent__TOP__3(VAccumMulAddRecF32__Syms
 				       << 0x1eU)) | 
 		       (0x3fffff00U & (__Vtemp83[1U] 
 				       >> 2U)))));
-    vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__signOut 
-	= ((~ (IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__isNaNOut)) 
-	   & (((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T114) 
-	       & (IData)((vlTOPp->AccumMulAddRecF32__DOT__accum 
-			  >> 0x20U))) | (((~ (IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T114)) 
-					  & (0U != 
-					     (7U & (IData)(
-							   (vlTOPp->AccumMulAddRecF32__DOT__accum 
-							    >> 0x1dU))))) 
-					 & ((0U != 
-					     (3U & 
-					      (vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_postMul__DOT__notCDom_sig 
-					       >> 0x19U))) 
-					    & ((IData)(
-						       (vlTOPp->AccumMulAddRecF32__DOT__accum 
-							>> 0x20U)) 
-					       ^ (vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_postMul__DOT__sigSum[1U] 
-						  >> 0x13U))))));
     vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_postMul__DOT__T312 
 	= ((0U == (7U & (IData)((vlTOPp->AccumMulAddRecF32__DOT__accum 
 				 >> 0x1dU)))) | (0U 
@@ -1619,9 +1660,6 @@ VL_INLINE_OPT void VAccumMulAddRecF32::_sequent__TOP__3(VAccumMulAddRecF32__Syms
     vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__overflow 
 	= ((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__commonCase) 
 	   & VL_LTES_III(1,6,6, 3U, (0x3fU & VL_SHIFTRS_III(13,13,3, (IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T86), 7U))));
-    vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__notNaN_isInfOut 
-	= ((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T114) 
-	   | (IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__overflow));
     vlTOPp->io_ignore = (((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_postMul__DOT__T316) 
 			  << 4U) | (((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__overflow) 
 				     << 2U) | ((((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__commonCase) 
@@ -1641,6 +1679,115 @@ VL_INLINE_OPT void VAccumMulAddRecF32::_sequent__TOP__3(VAccumMulAddRecF32__Syms
 						  | ((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__commonCase) 
 						     & (VL_GTS_III(1,13,13, 0x6bU, (IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T86)) 
 							| (IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T5)))))));
+    vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__notNaN_isInfOut 
+	= ((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T114) 
+	   | (IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__overflow));
+    vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T156 
+	= (((QData)((IData)(((~ (IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__isNaNOut)) 
+			     & (((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T114) 
+				 & (IData)((vlTOPp->AccumMulAddRecF32__DOT__accum 
+					    >> 0x20U))) 
+				| (((~ (IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__T114)) 
+				    & (0U != (7U & (IData)(
+							   (vlTOPp->AccumMulAddRecF32__DOT__accum 
+							    >> 0x1dU))))) 
+				   & ((0U != (3U & 
+					      (vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_postMul__DOT__notCDom_sig 
+					       >> 0x19U))) 
+				      & ((IData)((vlTOPp->AccumMulAddRecF32__DOT__accum 
+						  >> 0x20U)) 
+					 ^ (vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_postMul__DOT__sigSum[1U] 
+					    >> 0x13U)))))))) 
+	    << 0x20U) | (QData)((IData)(((0xff800000U 
+					  & ((((((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T86) 
+						 & (~ 
+						    (((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_postMul__DOT__T312) 
+						      | VL_GTS_III(1,13,13, 0x6bU, (IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T86)))
+						      ? 0x1c0U
+						      : 0U))) 
+						& (~ 
+						   ((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__notNaN_isInfOut)
+						     ? 0x40U
+						     : 0U))) 
+					       | ((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__notNaN_isInfOut)
+						   ? 0x180U
+						   : 0U)) 
+					      | ((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__isNaNOut)
+						  ? 0x1c0U
+						  : 0U)) 
+					     << 0x17U)) 
+					 | (0x7fffffU 
+					    & ((((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__isNaNOut) 
+						 | (IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_postMul__DOT__T312)) 
+						| VL_GTS_III(1,13,13, 0x6bU, (IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T86)))
+					        ? ((IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__isNaNOut)
+						    ? 0x400000U
+						    : 0U)
+					        : (
+						   (0x4000000U 
+						    & vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_postMul__DOT__notCDom_sig)
+						    ? 
+						   (vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T90 
+						    >> 1U)
+						    : vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T90)))))));
+    vlTOPp->AccumMulAddRecF32__DOT__T20 = (((0U != 
+					     (7U & (IData)(
+							   (vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T156 
+							    >> 0x1dU)))) 
+					    << 0x17U) 
+					   | (0x7fffffU 
+					      & (IData)(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T156)));
+    vlTOPp->AccumMulAddRecF32__DOT__T27 = ((3U == (3U 
+						   & (IData)(
+							     (vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T156 
+							      >> 0x1eU)))) 
+					   & (~ (IData)(
+							(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T156 
+							 >> 0x1dU))));
+    vlTOPp->io_out3 = ((0x80000000U & ((IData)((vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T156 
+						>> 0x20U)) 
+				       << 0x1fU)) | 
+		       ((0x7f800000U & (((VL_GTS_III(1,10,10, 0x82U, 
+						     (0x1ffU 
+						      & (IData)(
+								(vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T156 
+								 >> 0x17U))))
+					   ? 0U : (
+						   (0x1ffU 
+						    & (IData)(
+							      (vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T156 
+							       >> 0x17U))) 
+						   - (IData)(0x81U))) 
+					 | VL_NEGATE_I(
+						       (((3U 
+							  == 
+							  (3U 
+							   & (IData)(
+								     (vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T156 
+								      >> 0x1eU)))) 
+							 & (IData)(
+								   (vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T156 
+								    >> 0x1dU))) 
+							| (IData)(vlTOPp->AccumMulAddRecF32__DOT__T27)))) 
+					<< 0x17U)) 
+			| (0x7fffffU & (VL_GTS_III(1,10,10, 0x82U, 
+						   (0x1ffU 
+						    & (IData)(
+							      (vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T156 
+							       >> 0x17U))))
+					 ? (0xffffffU 
+					    & ((0xffffffU 
+						& (vlTOPp->AccumMulAddRecF32__DOT__T20 
+						   >> 1U)) 
+					       >> (0x1fU 
+						   & ((IData)(1U) 
+						      - 
+						      (0x1ffU 
+						       & (IData)(
+								 (vlTOPp->AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T156 
+								  >> 0x17U)))))))
+					 : ((IData)(vlTOPp->AccumMulAddRecF32__DOT__T27)
+					     ? 0U : vlTOPp->AccumMulAddRecF32__DOT__T20)))));
 }
 
 void VAccumMulAddRecF32::_eval(VAccumMulAddRecF32__Syms* __restrict vlSymsp) {
@@ -1659,7 +1806,7 @@ void VAccumMulAddRecF32::_eval_initial(VAccumMulAddRecF32__Syms* __restrict vlSy
     VL_DEBUG_IF(VL_DBG_MSGF("+    VAccumMulAddRecF32::_eval_initial\n"); );
     VAccumMulAddRecF32* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
-    vlTOPp->_initial__TOP__1(vlSymsp);
+    vlTOPp->_initial__TOP__2(vlSymsp);
     vlTOPp->__Vm_traceActivity = (1U | vlTOPp->__Vm_traceActivity);
 }
 
@@ -1674,8 +1821,9 @@ void VAccumMulAddRecF32::_eval_settle(VAccumMulAddRecF32__Syms* __restrict vlSym
     VL_DEBUG_IF(VL_DBG_MSGF("+    VAccumMulAddRecF32::_eval_settle\n"); );
     VAccumMulAddRecF32* __restrict vlTOPp VL_ATTR_UNUSED = vlSymsp->TOPp;
     // Body
-    vlTOPp->_settle__TOP__2(vlSymsp);
+    vlTOPp->_settle__TOP__1(vlSymsp);
     vlTOPp->__Vm_traceActivity = (1U | vlTOPp->__Vm_traceActivity);
+    vlTOPp->_settle__TOP__4(vlSymsp);
 }
 
 VL_INLINE_OPT QData VAccumMulAddRecF32::_change_request(VAccumMulAddRecF32__Syms* __restrict vlSymsp) {
@@ -1708,6 +1856,8 @@ void VAccumMulAddRecF32::_ctor_var_reset() {
     io_out3 = VL_RAND_RESET_I(32);
     io_ignore = VL_RAND_RESET_I(5);
     AccumMulAddRecF32__DOT__accum = VL_RAND_RESET_Q(33);
+    AccumMulAddRecF32__DOT__T20 = VL_RAND_RESET_I(24);
+    AccumMulAddRecF32__DOT__T27 = VL_RAND_RESET_I(1);
     AccumMulAddRecF32__DOT__initvar = VL_RAND_RESET_I(32);
     AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddResult = VL_RAND_RESET_Q(50);
     VL_RAND_RESET_W(76,AccumMulAddRecF32__DOT__mulAdd__DOT__mulAddRecFNToRaw_preMul__DOT__alignedSigC);
@@ -1748,8 +1898,8 @@ void VAccumMulAddRecF32::_ctor_var_reset() {
     AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__commonCase = VL_RAND_RESET_I(1);
     AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__isNaNOut = VL_RAND_RESET_I(1);
     AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__overflow = VL_RAND_RESET_I(1);
+    AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__T156 = VL_RAND_RESET_Q(33);
     AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__notNaN_isInfOut = VL_RAND_RESET_I(1);
-    AccumMulAddRecF32__DOT__mulAdd__DOT__roundRawFNToRecFN__DOT__roundAnyRawFNToRecFN__DOT__signOut = VL_RAND_RESET_I(1);
     __Vclklast__TOP__clk = VL_RAND_RESET_I(1);
     __Vm_traceActivity = VL_RAND_RESET_I(32);
 }

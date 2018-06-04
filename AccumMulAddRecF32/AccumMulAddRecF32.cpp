@@ -47,6 +47,7 @@ int main(int argc, char ** argv, char **env) {
     printf("exp:\t\t\t%x\n", io_out_exp);
     printBits(outSigWidth - 1, sizeof(io_out_sig), &io_out_sig, "io_out_sig:\t\t");
     printBits(outExpWidth + outSigWidth + 1, sizeof(top->io_out), &top->io_out, "io_out:\t\t\t");
+    printBits(outExpWidth + outSigWidth, sizeof(top->io_out3), &top->io_out3, "io_out3:\t\t");
     printf("\n");
 
     tfp->dump(main_time);

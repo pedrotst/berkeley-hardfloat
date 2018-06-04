@@ -1,5 +1,3 @@
-/* verilator lint_off STMTDLY */
-
 module MulAddRecFNToRaw_preMul(
     input [1:0] io_op,
     input [32:0] io_a,
@@ -1943,30 +1941,58 @@ module AccumMulAddRecF32(input clk, input reset,
   wire[28:0] T0;
   wire[22:0] T1;
   wire[24:0] T2;
-  wire[24:0] T3;
-  wire[23:0] T4;
-  wire[22:0] T5;
-  wire[21:0] T6;
-  wire[38:0] T7;
-  wire[5:0] T9;
-  wire[9:0] T10;
-  wire[9:0] T11;
-  wire[9:0] T12;
-  wire[8:0] T13;
-  wire[8:0] T14;
-  wire[8:0] T15;
-  wire[8:0] T25;
-  wire[3:0] T16;
-  wire[2:0] T17;
-  wire[2:0] T26;
-  wire T18;
-  wire T19;
-  wire[1:0] T20;
-  wire[2:0] T21;
-  wire[2:0] T22;
+  wire[5:0] T3;
+  wire[9:0] T4;
+  wire[9:0] T5;
+  wire[3:0] T6;
+  wire[2:0] T7;
+  wire[2:0] T52;
+  wire T8;
+  wire[2:0] T9;
+  wire[2:0] T10;
+  wire T11;
+  wire T12;
+  wire[32:0] T53;
+  wire[31:0] T13;
+  wire[30:0] T14;
+  wire[22:0] T15;
+  wire[22:0] T16;
+  wire[22:0] T17;
+  wire[24:0] T18;
+  wire[24:0] T19;
+  wire[23:0] T20;
+  wire[22:0] T21;
+  wire T22;
   wire T23;
-  wire T24;
-  wire[32:0] T27;
+  wire[2:0] T24;
+  wire[8:0] T25;
+  wire T26;
+  wire T27;
+  wire T28;
+  wire T29;
+  wire T30;
+  wire[1:0] T31;
+  wire[22:0] T32;
+  wire[23:0] T33;
+  wire[4:0] T34;
+  wire[4:0] T35;
+  wire[9:0] T36;
+  wire[9:0] T37;
+  wire[9:0] T38;
+  wire[23:0] T39;
+  wire T40;
+  wire[7:0] T41;
+  wire[7:0] T42;
+  wire[7:0] T54;
+  wire T43;
+  wire T44;
+  wire T45;
+  wire T46;
+  wire[7:0] T47;
+  wire[7:0] T48;
+  wire[7:0] T49;
+  wire T50;
+  wire T51;
   wire[32:0] mulAdd_io_out;
   wire[4:0] mulAdd_io_exceptionFlags;
 
@@ -1980,42 +2006,70 @@ module AccumMulAddRecF32(input clk, input reset,
 // synthesis translate_on
 `endif
 
-  assign regInit = {T16, T0};
-  assign T0 = {T9, T1};
+  assign regInit = {T6, T0};
+  assign T0 = {T3, T1};
   assign T1 = T2[22:0];
-  assign T2 = T3;
-  assign T3 = {1'h0, T4};
-  assign T4 = {1'h1, T5};
-  assign T5 = T6 << 1'h1;
-  assign T6 = T7[21:0];
-  assign T7 = 23'h6a << 5'h10;
-  assign T9 = T10[5:0];
-  assign T10 = T11;
-  assign T11 = T12;
-  assign T12 = {1'h0, T13};
-  assign T13 = T14;
-  assign T14 = T15 + 9'h82;
-  assign T15 = T25 ^ 9'h1ff;
-  assign T25 = {4'h0, 5'h10};
-  assign T16 = {T24, T17};
-  assign T17 = T21 | T26;
-  assign T26 = {2'h0, T18};
-  assign T18 = T19;
-  assign T19 = T20 == 2'h3;
-  assign T20 = T14[8:7];
-  assign T21 = T23 ? 3'h0 : T22;
-  assign T22 = T10[8:6];
-  assign T23 = 1'h0;
-  assign T24 = 1'h0;
-  assign T27 = reset ? regInit : mulAdd_io_out;
+  assign T2 = 25'hfff86a;
+  assign T3 = T4[5:0];
+  assign T4 = T5;
+  assign T5 = 10'hc1;
+  assign T6 = {T12, T7};
+  assign T7 = T9 | T52;
+  assign T52 = {2'h0, T8};
+  assign T8 = 1'h0;
+  assign T9 = T11 ? 3'h0 : T10;
+  assign T10 = T4[8:6];
+  assign T11 = 1'h0;
+  assign T12 = 1'h0;
+  assign T53 = reset ? regInit : mulAdd_io_out;
   assign io_ignore = mulAdd_io_exceptionFlags;
-  assign io_out3 = 32'h6a;
+  assign io_out3 = T13;
+  assign T13 = {T50, T14};
+  assign T14 = {T41, T15};
+  assign T15 = T40 ? T32 : T16;
+  assign T16 = T26 ? 23'h0 : T17;
+  assign T17 = T18[22:0];
+  assign T18 = T19;
+  assign T19 = {1'h0, T20};
+  assign T20 = {T22, T21};
+  assign T21 = mulAdd_io_out[22:0];
+  assign T22 = T23 ^ 1'h1;
+  assign T23 = T24 == 3'h0;
+  assign T24 = T25[8:6];
+  assign T25 = mulAdd_io_out[31:23];
+  assign T26 = T27;
+  assign T27 = T30 & T28;
+  assign T28 = T29 ^ 1'h1;
+  assign T29 = T25[6];
+  assign T30 = T31 == 2'h3;
+  assign T31 = T25[8:7];
+  assign T32 = T33[22:0];
+  assign T33 = T39 >> T34;
+  assign T34 = 5'h1 - T35;
+  assign T35 = T36[4:0];
+  assign T36 = T37;
+  assign T37 = T38;
+  assign T38 = {1'h0, T25};
+  assign T39 = T18 >> 1'h1;
+  assign T40 = $signed(T36) < $signed(9'h82);
+  assign T41 = T47 | T42;
+  assign T42 = 8'h0 - T54;
+  assign T54 = {7'h0, T43};
+  assign T43 = T44 | T26;
+  assign T44 = T45;
+  assign T45 = T30 & T46;
+  assign T46 = T25[6];
+  assign T47 = T40 ? 8'h0 : T48;
+  assign T48 = T49 - 8'h81;
+  assign T49 = T36[7:0];
+  assign T50 = T51;
+  assign T51 = mulAdd_io_out[32];
   assign io_out2 = regInit;
   assign io_out = accum;
   MulAddRecFN mulAdd(
        .io_op( 2'h0 ),
        .io_a( accum ),
-       .io_b( 33'h80000000 ),
+       .io_b( 33'h7f800000 ),
        .io_c( 33'h0 ),
        .io_roundingMode( 3'h0 ),
        .io_detectTininess( 1'h0 ),
