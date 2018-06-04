@@ -2149,7 +2149,7 @@ module AccumMulAddRecF32(input clk, input reset,
   MulAddRecFN mulAdd(
        .io_op( 2'h0 ),
        .io_a( accum ),
-       .io_b( 33'h7f800000 ),
+       .io_b( 33'h7fa00000 ),
        .io_c( 33'h0 ),
        .io_roundingMode( 3'h0 ),
        .io_detectTininess( 1'h0 ),

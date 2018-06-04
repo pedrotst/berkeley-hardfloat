@@ -25,7 +25,7 @@ int main(int argc, char ** argv, char **env) {
   vluint64_t main_time = 0;
   uint32_t io_out_exp = 0x63;
 
-  while (!Verilated::gotFinish() && ((main_time < 10) || (io_out_exp > 0x62))) {
+  while (!Verilated::gotFinish() && ((main_time < 200) && (io_out_exp > 0x1))) {
     top->clk = main_time;
     if(main_time < 2)
       top->reset = 1;
@@ -51,6 +51,7 @@ int main(int argc, char ** argv, char **env) {
     printBits(outExpWidth + outSigWidth, sizeof(top->io_out3), &top->io_out3, "io_out3:\t\t");
     printf("\n");
 
+    printf("maintime: %lu\n", main_time);
     tfp->dump(main_time);
     main_time++;
   }
