@@ -90,12 +90,18 @@ object FMATest {
                 chiselMain(testArgs, () => Module(new Equiv_MulAddF32))
             case "MulAddF64" =>
                 chiselMain(testArgs, () => Module(new Equiv_MulAddF64))
-            case "I32ToRec32" =>
+            case "I32ToRecF32" =>
                 chiselMain(testArgs, () => Module(new Equiv_I32ToRecF32))
-            case "I32ToRec64" =>
+            case "I32ToRecF64" =>
                 chiselMain(testArgs, () => Module(new Equiv_I32ToRecF64))
-            case "I64ToRec64" =>
+            case "I64ToRecF64" =>
                 chiselMain(testArgs, () => Module(new Equiv_I64ToRecF64))
+            case "I32ToF32" =>
+                chiselMain(testArgs, () => Module(new Equiv_I32ToF32))
+            case "I32ToF64" =>
+                chiselMain(testArgs, () => Module(new Equiv_I32ToF64))
+            case "I64ToF64" =>
+                chiselMain(testArgs, () => Module(new Equiv_I64ToF64))
             case "RecF32ToI32" =>
                 chiselMain(testArgs, () => Module(new Equiv_RecF32ToI32))
             case "RecF32ToI64" =>
@@ -104,6 +110,14 @@ object FMATest {
                 chiselMain(testArgs, () => Module(new Equiv_RecF64ToI32))
             case "RecF64ToI64" =>
                 chiselMain(testArgs, () => Module(new Equiv_RecF64ToI64))
+            case "F32ToI32" =>
+                chiselMain(testArgs, () => Module(new Equiv_F32ToI32))
+            case "F32ToI64" =>
+                chiselMain(testArgs, () => Module(new Equiv_F32ToI64))
+            case "F64ToI32" =>
+                chiselMain(testArgs, () => Module(new Equiv_F64ToI32))
+            case "F64ToI64" =>
+                chiselMain(testArgs, () => Module(new Equiv_F64ToI64))
             case "AccumMulAddRecF32" =>
                 chiselMain(
                     testArgs, () => Module(new AccumMulAddRecF32))
