@@ -53,17 +53,4 @@ object recFNFromFN
     }
 }
 
-class ValExec_recFNFromFN(expWidth: Int, sigWidth:Int) extends Module 
-{
-    val io = new Bundle {
-      val in = Bits(INPUT, expWidth + sigWidth)
-      val out = Bits(OUTPUT, expWidth + sigWidth + 1)
-    }
-
-    io.out := recFNFromFN(expWidth, sigWidth, io.in)
-}
-
-class ValExec_recFNFrom16FN extends ValExec_recFNFromFN(5, 11)
-class ValExec_recFNFrom32FN extends ValExec_recFNFromFN(8, 24)
-class ValExec_recFNFrom64FN extends ValExec_recFNFromFN(11, 53)
 

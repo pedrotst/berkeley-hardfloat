@@ -39,36 +39,17 @@ package hardfloat
 
 import Chisel._
 
-class
-    ValExec_FNToFN(
-        inExpWidth: Int, inSigWidth: Int, outExpWidth: Int, outSigWidth: Int)
-    extends Module
+class Equiv_recFNFromFN(expWidth: Int, sigWidth:Int) extends Module 
 {
     val io = new Bundle {
-        val in = Bits(INPUT, inExpWidth + inSigWidth)
-        val roundingMode   = UInt(INPUT, 3)
-        val detectTininess = UInt(INPUT, 1)
-
-        val out = Bits(OUTPUT, outExpWidth + outSigWidth)
-        val exceptionFlags = Bits(OUTPUT, 5)
+      val in = Bits(INPUT, expWidth + sigWidth)
+      val out = Bits(OUTPUT, expWidth + sigWidth + 1)
     }
 
-    val recFNToRecFN =
-        Module(
-            new RecFNToRecFN(inExpWidth, inSigWidth, outExpWidth, outSigWidth))
-    recFNToRecFN.io.in := recFNFromFN(inExpWidth, inSigWidth, io.in)
-    recFNToRecFN.io.roundingMode   := io.roundingMode
-    recFNToRecFN.io.detectTininess := io.detectTininess
-
-    io.out := fNFromRecFN(outExpWidth, outSigWidth, recFNToRecFN.io.out)
-    io.exceptionFlags := recFNToRecFN.io.exceptionFlags
-
+    io.out := recFNFromFN(expWidth, sigWidth, io.in)
 }
 
-class ValExec_F16ToF32 extends ValExec_FNToFN(5, 11, 8, 24)
-class ValExec_F16ToF64 extends ValExec_FNToFN(5, 11, 11, 53)
-class ValExec_F32ToF16 extends ValExec_FNToFN(8, 24, 5, 11)
-class ValExec_F32ToF64 extends ValExec_FNToFN(8, 24, 11, 53)
-class ValExec_F64ToF16 extends ValExec_FNToFN(11, 53, 5, 11)
-class ValExec_F64ToF32 extends ValExec_FNToFN(11, 53, 8, 24)
+class Equiv_recFNFrom16FN extends Equiv_recFNFromFN(5, 11)
+class Equiv_recFNFrom32FN extends Equiv_recFNFromFN(8, 24)
+class Equiv_recFNFrom64FN extends Equiv_recFNFromFN(11, 53)
 

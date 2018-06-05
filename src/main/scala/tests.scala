@@ -59,167 +59,25 @@ object FMATest {
         val testArgs = args.slice(1, args.length)
         args(0) match {
             case "f16FromRecF16" =>
-                chiselMain(testArgs, () => Module(new ValExec_f16FromRecF16))
+                chiselMain(testArgs, () => Module(new Equiv_f16FromRecF16))
             case "f32FromRecF32" =>
-                chiselMain(testArgs, () => Module(new ValExec_f32FromRecF32))
+                chiselMain(testArgs, () => Module(new Equiv_f32FromRecF32))
             case "f64FromRecF64" =>
-                chiselMain(testArgs, () => Module(new ValExec_f64FromRecF64))
-            case "UI32ToRecF16" =>
-                chiselMain(testArgs, () => Module(new ValExec_UI32ToRecF16))
-            case "UI32ToRecF32" =>
-                chiselMain(testArgs, () => Module(new ValExec_UI32ToRecF32))
-            case "UI32ToRecF64" =>
-                chiselMain(testArgs, () => Module(new ValExec_UI32ToRecF64))
-            case "UI64ToRecF16" =>
-                chiselMain(testArgs, () => Module(new ValExec_UI64ToRecF16))
-            case "UI64ToRecF32" =>
-                chiselMain(testArgs, () => Module(new ValExec_UI64ToRecF32))
-            case "UI64ToRecF64" =>
-                chiselMain(testArgs, () => Module(new ValExec_UI64ToRecF64))
-            case "I32ToRecF16" =>
-                chiselMain(testArgs, () => Module(new ValExec_I32ToRecF16))
-            case "I32ToRecF32" =>
-                chiselMain(testArgs, () => Module(new ValExec_I32ToRecF32))
-            case "I32ToRecF64" =>
-                chiselMain(testArgs, () => Module(new ValExec_I32ToRecF64))
-            case "I64ToRecF16" =>
-                chiselMain(testArgs, () => Module(new ValExec_I64ToRecF16))
-            case "I64ToRecF32" =>
-                chiselMain(testArgs, () => Module(new ValExec_I64ToRecF32))
-            case "I64ToRecF64" =>
-                chiselMain(testArgs, () => Module(new ValExec_I64ToRecF64))
-            case "RecF16ToUI32" =>
-                chiselMain(testArgs, () => Module(new ValExec_RecF16ToUI32))
-            case "RecF16ToUI64" =>
-                chiselMain(testArgs, () => Module(new ValExec_RecF16ToUI64))
-            case "RecF32ToUI32" =>
-                chiselMain(testArgs, () => Module(new ValExec_RecF32ToUI32))
-            case "RecF32ToUI64" =>
-                chiselMain(testArgs, () => Module(new ValExec_RecF32ToUI64))
-            case "RecF64ToUI32" =>
-                chiselMain(testArgs, () => Module(new ValExec_RecF64ToUI32))
-            case "RecF64ToUI64" =>
-                chiselMain(testArgs, () => Module(new ValExec_RecF64ToUI64))
-            case "RecF16ToI32" =>
-                chiselMain(testArgs, () => Module(new ValExec_RecF16ToI32))
-            case "RecF16ToI64" =>
-                chiselMain(testArgs, () => Module(new ValExec_RecF16ToI64))
-            case "RecF32ToI32" =>
-                chiselMain(testArgs, () => Module(new ValExec_RecF32ToI32))
-            case "RecF32ToI64" =>
-                chiselMain(testArgs, () => Module(new ValExec_RecF32ToI64))
-            case "RecF64ToI32" =>
-                chiselMain(testArgs, () => Module(new ValExec_RecF64ToI32))
-            case "RecF64ToI64" =>
-                chiselMain(testArgs, () => Module(new ValExec_RecF64ToI64))
-            case "F16ToF32" =>
-                chiselMain(testArgs, () => Module(new ValExec_F16ToF32))
-            case "F16ToF64" =>
-                chiselMain(testArgs, () => Module(new ValExec_F16ToF64))
-            case "F32ToF16" =>
-                chiselMain(testArgs, () => Module(new ValExec_F32ToF16))
-            case "F32ToF64" =>
-                chiselMain(testArgs, () => Module(new ValExec_F32ToF64))
-            case "F64ToF16" =>
-                chiselMain(testArgs, () => Module(new ValExec_F64ToF16))
-            case "F64ToF32" =>
-                chiselMain(testArgs, () => Module(new ValExec_F64ToF32))
+                chiselMain(testArgs, () => Module(new Equiv_f64FromRecF64))
             case "RecFNFrom16FN" =>
-                chiselMain(testArgs, () => Module(new ValExec_recFNFrom16FN))
+                chiselMain(testArgs, () => Module(new Equiv_recFNFrom16FN))
             case "RecFNFrom32FN" =>
-                chiselMain(testArgs, () => Module(new ValExec_recFNFrom32FN))
+                chiselMain(testArgs, () => Module(new Equiv_recFNFrom32FN))
             case "RecFNFrom64FN" =>
-                chiselMain(testArgs, () => Module(new ValExec_recFNFrom64FN))
-            case "MulAddRecF16_add" =>
-                chiselMain(
-                    testArgs, () => Module(new ValExec_MulAddRecF16_add))
-            case "MulAddRecF16_mul" =>
-                chiselMain(
-                    testArgs, () => Module(new ValExec_MulAddRecF16_mul))
-            case "ImplMulAddRecF16" =>
-                chiselMain(testArgs, () => Module(new MulAddRecF16))
-            case "MulAddRecF16" =>
-                chiselMain(testArgs, () => Module(new ValExec_MulAddRecF16))
-            case "MulAddRecF32_add" =>
-                chiselMain(
-                    testArgs, () => Module(new ValExec_MulAddRecF32_add))
-            case "MulAddRecF32_mul" =>
-                chiselMain(
-                    testArgs, () => Module(new ValExec_MulAddRecF32_mul))
-            case "ImplMulAddRecF32" =>
-                chiselMain(testArgs, () => Module(new MulAddRecF32))
-            case "MulAddRecF32" =>
-                chiselMain(testArgs, () => Module(new ValExec_MulAddRecF32))
-            case "MulAddRecF64_add" =>
-                chiselMain(
-                    testArgs, () => Module(new ValExec_MulAddRecF64_add))
-            case "MulAddRecF64_mul" =>
-                chiselMain(
-                    testArgs, () => Module(new ValExec_MulAddRecF64_mul))
-            case "ImplMulAddRecF64" =>
-                chiselMain(testArgs, () => Module(new MulAddRecF64))
-            case "MulAddRecF64" =>
-                chiselMain(testArgs, () => Module(new ValExec_MulAddRecF64))
-            case "DivSqrtRecF16_small_div" =>
-                chiselMain(
-                    testArgs, () => Module(new ValExec_DivSqrtRecF16_small_div)
-                )
-            case "DivSqrtRecF16_small_sqrt" =>
-                chiselMain(
-                    testArgs,
-                    () => Module(new ValExec_DivSqrtRecF16_small_sqrt)
-                )
-            case "DivSqrtRecF32_small_div" =>
-                chiselMain(
-                    testArgs, () => Module(new ValExec_DivSqrtRecF32_small_div)
-                )
-            case "DivSqrtRecF32_small_sqrt" =>
-                chiselMain(
-                    testArgs,
-                    () => Module(new ValExec_DivSqrtRecF32_small_sqrt)
-                )
-            case "DivSqrtRecF64_small_div" =>
-                chiselMain(
-                    testArgs, () => Module(new ValExec_DivSqrtRecF64_small_div)
-                )
-            case "DivSqrtRecF64_small_sqrt" =>
-                chiselMain(
-                    testArgs,
-                    () => Module(new ValExec_DivSqrtRecF64_small_sqrt)
-                )
-            case "DivSqrtRecF64_div" =>
-                chiselMain(
-                    testArgs, () => Module(new ValExec_DivSqrtRecF64_div))
-            case "DivSqrtRecF64_sqrt" =>
-                chiselMain(
-                    testArgs, () => Module(new ValExec_DivSqrtRecF64_sqrt))
-            case "CompareRecF16_lt" =>
-                chiselMain(
-                    testArgs, () => Module(new ValExec_CompareRecF16_lt))
-            case "CompareRecF16_le" =>
-                chiselMain(
-                    testArgs, () => Module(new ValExec_CompareRecF16_le))
-            case "CompareRecF16_eq" =>
-                chiselMain(
-                    testArgs, () => Module(new ValExec_CompareRecF16_eq))
-            case "CompareRecF32_lt" =>
-                chiselMain(
-                    testArgs, () => Module(new ValExec_CompareRecF32_lt))
-            case "CompareRecF32_le" =>
-                chiselMain(
-                    testArgs, () => Module(new ValExec_CompareRecF32_le))
-            case "CompareRecF32_eq" =>
-                chiselMain(
-                    testArgs, () => Module(new ValExec_CompareRecF32_eq))
-            case "CompareRecF64_lt" =>
-                chiselMain(
-                    testArgs, () => Module(new ValExec_CompareRecF64_lt))
-            case "CompareRecF64_le" =>
-                chiselMain(
-                    testArgs, () => Module(new ValExec_CompareRecF64_le))
-            case "CompareRecF64_eq" =>
-                chiselMain(
-                    testArgs, () => Module(new ValExec_CompareRecF64_eq))
+                chiselMain(testArgs, () => Module(new Equiv_recFNFrom64FN))
+            case "F32ToF16" =>
+                chiselMain(testArgs, () => Module(new Equiv_F32ToF16))
+            case "F32ToF64" =>
+                chiselMain(testArgs, () => Module(new Equiv_F32ToF64))
+            case "F64ToF16" =>
+                chiselMain(testArgs, () => Module(new Equiv_F64ToF16))
+            case "F64ToF32" =>
+                chiselMain(testArgs, () => Module(new Equiv_F64ToF32))
             case "AccumMulAddRecF32" =>
                 chiselMain(
                     testArgs, () => Module(new AccumMulAddRecF32))

@@ -39,36 +39,23 @@ package hardfloat
 
 import Chisel._
 
-class
-    ValExec_RecFNToRecFN(
-        inExpWidth: Int, inSigWidth: Int, outExpWidth: Int, outSigWidth: Int)
-    extends Module
+class Equiv_fNFromRecFN(expWidth: Int, sigWidth: Int) extends Module
 {
     val io = new Bundle {
-        val in = Bits(INPUT, inExpWidth + inSigWidth)
-        val roundingMode   = UInt(INPUT, 3)
-        val detectTininess = UInt(INPUT, 1)
-
-        val out = Bits(OUTPUT, outExpWidth + outSigWidth)
-        val exceptionFlags = Bits(OUTPUT, 5)
+        val a = Bits(INPUT, expWidth + sigWidth)
+        val out = Bits(OUTPUT, expWidth + sigWidth)
+        val check = Bool(OUTPUT)
+        val pass = Bool(OUTPUT)
     }
 
-    val recFNToRecFN =
-        Module(
-            new RecFNToRecFN(inExpWidth, inSigWidth, outExpWidth, outSigWidth))
-    recFNToRecFN.io.in := recFNFromFN(inExpWidth, inSigWidth, io.in)
-    recFNToRecFN.io.roundingMode   := io.roundingMode
-    recFNToRecFN.io.detectTininess := io.detectTininess
+    io.out :=
+        fNFromRecFN(expWidth, sigWidth, recFNFromFN(expWidth, sigWidth, io.a))
 
-    io.out := fNFromRecFN(outExpWidth, outSigWidth, recFNToRecFN.io.out)
-    io.exceptionFlags := recFNToRecFN.io.exceptionFlags
-
+    io.check := Bool(true)
+    io.pass := (io.out === io.a)
 }
 
-class ValExec_RecF16ToRecF32 extends ValExec_RecFNToRecFN(5, 11, 8, 24)
-class ValExec_RecF16ToRecF64 extends ValExec_RecFNToRecFN(5, 11, 11, 53)
-class ValExec_RecF32ToRecF16 extends ValExec_RecFNToRecFN(8, 24, 5, 11)
-class ValExec_RecF32ToRecF64 extends ValExec_RecFNToRecFN(8, 24, 11, 53)
-class ValExec_RecF64ToRecF16 extends ValExec_RecFNToRecFN(11, 53, 5, 11)
-class ValExec_RecF64ToRecF32 extends ValExec_RecFNToRecFN(11, 53, 8, 24)
+class Equiv_f16FromRecF16 extends Equiv_fNFromRecFN(5, 11)
+class Equiv_f32FromRecF32 extends Equiv_fNFromRecFN(8, 24)
+class Equiv_f64FromRecF64 extends Equiv_fNFromRecFN(11, 53)
 
