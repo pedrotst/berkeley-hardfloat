@@ -73,7 +73,7 @@ class Equiv_F64ToF16 extends Equiv_FNToFN(11, 53, 5, 11)
 class Equiv_F64ToF32 extends Equiv_FNToFN(11, 53, 8, 24)
 
 class
-    Equiv_recFNToRecFN(
+    Equiv_RecFNToRecFN(
         inExpWidth: Int, inSigWidth: Int, outExpWidth: Int, outSigWidth: Int)
     extends Module
 {
@@ -98,11 +98,11 @@ class
 
 }
 
-class Equiv_recF16ToRecF32 extends Equiv_recFNToRecFN(5, 11, 8, 24)
-class Equiv_recF16ToRecF64 extends Equiv_recFNToRecFN(5, 11, 11, 53)
-class Equiv_recF32ToRecF16 extends Equiv_recFNToRecFN(8, 24, 5, 11)
-class Equiv_recF32ToRecF64 extends Equiv_recFNToRecFN(8, 24, 11, 53)
-class Equiv_recF64ToRecF16 extends Equiv_recFNToRecFN(11, 53, 5, 11)
-class Equiv_recF64ToRecF32 extends Equiv_recFNToRecFN(11, 53, 8, 24)
+class Equiv_RecF16ToRecF32 extends Equiv_RecFNToRecFN(5, 11, 8, 24)
+class Equiv_RecF16ToRecF64 extends Equiv_RecFNToRecFN(5, 11, 11, 53)
+class Equiv_RecF32ToRecF16 extends Equiv_RecFNToRecFN(8, 24, 5, 11)
+class Equiv_RecF32ToRecF64 extends Equiv_RecFNToRecFN(8, 24, 11, 53)
+class Equiv_RecF64ToRecF16 extends Equiv_RecFNToRecFN(11, 53, 5, 11)
+class Equiv_RecF64ToRecF32 extends Equiv_RecFNToRecFN(11, 53, 8, 24)
 
 

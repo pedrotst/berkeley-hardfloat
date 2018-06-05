@@ -39,7 +39,7 @@ package hardfloat
 
 import Chisel._
 
-class Equiv_fNFromRecFN(expWidth: Int, sigWidth: Int) extends Module
+class Equiv_RecFNToFN(expWidth: Int, sigWidth: Int) extends Module
 {
     val io = new Bundle {
         val a = Bits(INPUT, expWidth + sigWidth)
@@ -55,11 +55,11 @@ class Equiv_fNFromRecFN(expWidth: Int, sigWidth: Int) extends Module
     io.pass := (io.out === io.a)
 }
 
-class Equiv_f16FromRecF16 extends Equiv_fNFromRecFN(5, 11)
-class Equiv_f32FromRecF32 extends Equiv_fNFromRecFN(8, 24)
-class Equiv_f64FromRecF64 extends Equiv_fNFromRecFN(11, 53)
+class Equiv_RecF16ToF16 extends Equiv_RecFNToFN(5, 11)
+class Equiv_RecF32ToF32 extends Equiv_RecFNToFN(8, 24)
+class Equiv_RecF64ToF64 extends Equiv_RecFNToFN(11, 53)
 
-class Equiv_recFNFromFN(expWidth: Int, sigWidth:Int) extends Module 
+class Equiv_FNToRecFN(expWidth: Int, sigWidth:Int) extends Module 
 {
     val io = new Bundle {
       val in = Bits(INPUT, expWidth + sigWidth)
@@ -69,7 +69,7 @@ class Equiv_recFNFromFN(expWidth: Int, sigWidth:Int) extends Module
     io.out := recFNFromFN(expWidth, sigWidth, io.in)
 }
 
-class Equiv_recFNFrom16FN extends Equiv_recFNFromFN(5, 11)
-class Equiv_recFNFrom32FN extends Equiv_recFNFromFN(8, 24)
-class Equiv_recFNFrom64FN extends Equiv_recFNFromFN(11, 53)
+class Equiv_F16ToRecF16 extends Equiv_FNToRecFN(5, 11)
+class Equiv_F32ToRecF32 extends Equiv_FNToRecFN(8, 24)
+class Equiv_F64ToRecF64 extends Equiv_FNToRecFN(11, 53)
 
