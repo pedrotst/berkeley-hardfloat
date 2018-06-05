@@ -72,3 +72,37 @@ class Equiv_F32ToF64 extends Equiv_FNToFN(8, 24, 11, 53)
 class Equiv_F64ToF16 extends Equiv_FNToFN(11, 53, 5, 11)
 class Equiv_F64ToF32 extends Equiv_FNToFN(11, 53, 8, 24)
 
+class
+    Equiv_recFNToRecFN(
+        inExpWidth: Int, inSigWidth: Int, outExpWidth: Int, outSigWidth: Int)
+    extends Module
+{
+    val io = new Bundle {
+        val in = Bits(INPUT, inExpWidth + inSigWidth)
+        val roundingMode   = UInt(INPUT, 3)
+        val detectTininess = UInt(INPUT, 1)
+
+        val out = Bits(OUTPUT, outExpWidth + outSigWidth)
+        val exceptionFlags = Bits(OUTPUT, 5)
+    }
+
+    val recFNToRecFN =
+        Module(
+            new RecFNToRecFN(inExpWidth, inSigWidth, outExpWidth, outSigWidth))
+    recFNToRecFN.io.in := io.in
+    recFNToRecFN.io.roundingMode   := io.roundingMode
+    recFNToRecFN.io.detectTininess := io.detectTininess
+
+    io.out := recFNToRecFN.io.out
+    io.exceptionFlags := recFNToRecFN.io.exceptionFlags
+
+}
+
+class Equiv_recF16ToRecF32 extends Equiv_recFNToRecFN(5, 11, 8, 24)
+class Equiv_recF16ToRecF64 extends Equiv_recFNToRecFN(5, 11, 11, 53)
+class Equiv_recF32ToRecF16 extends Equiv_recFNToRecFN(8, 24, 5, 11)
+class Equiv_recF32ToRecF64 extends Equiv_recFNToRecFN(8, 24, 11, 53)
+class Equiv_recF64ToRecF16 extends Equiv_recFNToRecFN(11, 53, 5, 11)
+class Equiv_recF64ToRecF32 extends Equiv_recFNToRecFN(11, 53, 8, 24)
+
+
