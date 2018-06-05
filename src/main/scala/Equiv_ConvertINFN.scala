@@ -40,7 +40,7 @@ package hardfloat
 import Chisel._
 
 class
-    Equiv_INToFN(intWidth: Int, expWidth: Int, sigWidth: Int, signed: Bool)
+    Equiv_INToFN(intWidth: Int, expWidth: Int, sigWidth: Int)
     extends Module
 {
     val io = new Bundle {
@@ -62,12 +62,12 @@ class
     io.exceptionFlags := iNToRecFN.io.exceptionFlags
 }
 
-class Equiv_I32ToF16 extends Equiv_INToFN(32, 5, 11, Bool(true))
-class Equiv_I32ToF32 extends Equiv_INToFN(32, 8, 24, Bool(true))
-class Equiv_I32ToF64 extends Equiv_INToFN(32, 11, 53, Bool(true))
-class Equiv_I64ToF16 extends Equiv_INToFN(64, 5, 11, Bool(true))
-class Equiv_I64ToF32 extends Equiv_INToFN(64, 8, 24, Bool(true))
-class Equiv_I64ToF64 extends Equiv_INToFN(64, 11, 53, Bool(true))
+class Equiv_I32ToF16 extends Equiv_INToFN(32, 5, 11)
+class Equiv_I32ToF32 extends Equiv_INToFN(32, 8, 24)
+class Equiv_I32ToF64 extends Equiv_INToFN(32, 11, 53)
+class Equiv_I64ToF16 extends Equiv_INToFN(64, 5, 11)
+class Equiv_I64ToF32 extends Equiv_INToFN(64, 8, 24)
+class Equiv_I64ToF64 extends Equiv_INToFN(64, 11, 53)
 
 
 class
