@@ -40,7 +40,7 @@ package hardfloat
 import Chisel._
 
 class
-    Equiv_INToRecFN(intWidth: Int, expWidth: Int, sigWidth: Int)
+    Equiv_INToFN(intWidth: Int, expWidth: Int, sigWidth: Int)
     extends Module
 {
     val io = new Bundle {
@@ -48,7 +48,7 @@ class
         val roundingMode   = UInt(INPUT, 3)
         val detectTininess = UInt(INPUT, 1)
 
-        val out = Bits(OUTPUT, expWidth + sigWidth + 1)
+        val out = Bits(OUTPUT, expWidth + sigWidth)
         val exceptionFlags = Bits(OUTPUT, 5)
     }
 
@@ -58,20 +58,20 @@ class
     iNToRecFN.io.roundingMode   := io.roundingMode
     iNToRecFN.io.detectTininess := io.detectTininess
 
-    io.out := iNToRecFN.io.out
+    io.out := fNFromRecFN(expWidth, sigWidth, iNToRecFN.io.out)
     io.exceptionFlags := iNToRecFN.io.exceptionFlags
 }
 
-class Equiv_I32ToRecF16 extends Equiv_INToRecFN(32, 5, 11)
-class Equiv_I32ToRecF32 extends Equiv_INToRecFN(32, 8, 24)
-class Equiv_I32ToRecF64 extends Equiv_INToRecFN(32, 11, 53)
-class Equiv_I64ToRecF16 extends Equiv_INToRecFN(64, 5, 11)
-class Equiv_I64ToRecF32 extends Equiv_INToRecFN(64, 8, 24)
-class Equiv_I64ToRecF64 extends Equiv_INToRecFN(64, 11, 53)
+class Equiv_I32ToF16 extends Equiv_INToFN(32, 5, 11)
+class Equiv_I32ToF32 extends Equiv_INToFN(32, 8, 24)
+class Equiv_I32ToF64 extends Equiv_INToFN(32, 11, 53)
+class Equiv_I64ToF16 extends Equiv_INToFN(64, 5, 11)
+class Equiv_I64ToF32 extends Equiv_INToFN(64, 8, 24)
+class Equiv_I64ToF64 extends Equiv_INToFN(64, 11, 53)
 
 
 class
-    Equiv_RecFNToIN(expWidth: Int, sigWidth: Int, intWidth: Int)
+    Equiv_FNToIN(expWidth: Int, sigWidth: Int, intWidth: Int)
     extends Module
 {
     val io = new Bundle {
@@ -83,7 +83,7 @@ class
     }
 
     val recFNToIN = Module(new RecFNToIN(expWidth, sigWidth, intWidth))
-    recFNToIN.io.in := io.in
+    recFNToIN.io.in := recFNFromFN(expWidth, sigWidth, io.in)
     recFNToIN.io.roundingMode := io.roundingMode
     recFNToIN.io.signedOut := Bool(true)
 
@@ -95,10 +95,10 @@ class
         )
 }
 
-class Equiv_RecF16ToI32 extends Equiv_RecFNToIN(5, 11, 32)
-class Equiv_RecF16ToI64 extends Equiv_RecFNToIN(5, 11, 64)
-class Equiv_RecF32ToI32 extends Equiv_RecFNToIN(8, 24, 32)
-class Equiv_RecF32ToI64 extends Equiv_RecFNToIN(8, 24, 64)
-class Equiv_RecF64ToI32 extends Equiv_RecFNToIN(11, 53, 32)
-class Equiv_RecF64ToI64 extends Equiv_RecFNToIN(11, 53, 64)
+class Equiv_F16ToI32 extends Equiv_FNToIN(5, 11, 32)
+class Equiv_F16ToI64 extends Equiv_FNToIN(5, 11, 64)
+class Equiv_F32ToI32 extends Equiv_FNToIN(8, 24, 32)
+class Equiv_F32ToI64 extends Equiv_FNToIN(8, 24, 64)
+class Equiv_F64ToI32 extends Equiv_FNToIN(11, 53, 32)
+class Equiv_F64ToI64 extends Equiv_FNToIN(11, 53, 64)
 
