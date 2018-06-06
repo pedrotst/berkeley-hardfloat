@@ -1,0 +1,2 @@
+verilator --top-module Equiv_RecF64ToF64 -Wno-CMPCONST -Wno-WIDTH -Wno-lint -Wno-fatal --cc Equiv_RecF64ToF64.v --trace --trace-underscore --exe Equiv_RecF64ToF64.cpp
+make -j -C obj_dir -f VEquiv_RecF64ToF64.mk
