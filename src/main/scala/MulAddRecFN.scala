@@ -350,7 +350,7 @@ class MulAddRecFN(expWidth: Int, sigWidth: Int) extends Module
 class AccumMulAddRecF32 extends Module
 {
     //val regInit1 = UInt("b0000_0000_0000_0000_0000_0000_0000_0001")
-    val regInit1 = UInt("b0000_0000_1110_0000_0000_0000_0000_0010")
+    val regInit1 = UInt("b0000_0000_1110_0000_0000_0000_0000_0001")
     val regInit = recFNFromFN(8,24,regInit1)
     val accum = RegInit(regInit)
     val io = new Bundle {
