@@ -42,17 +42,19 @@ import Chisel._
 class Equiv_RecFNToFN(expWidth: Int, sigWidth: Int) extends Module
 {
     val io = new Bundle {
-        val a = Bits(INPUT, expWidth + sigWidth)
+        val in = Bits(INPUT, expWidth + sigWidth + 1)
         val out = Bits(OUTPUT, expWidth + sigWidth)
-        val check = Bool(OUTPUT)
-        val pass = Bool(OUTPUT)
+        val isBadNaN = Bits(OUTPUT, 1)
+        val firstThree = Bits(OUTPUT, 3)
+        val sig = Bits(OUTPUT, sigWidth)
+        val compare = Bits(OUTPUT, sigWidth)
     }
 
-    io.out :=
-        fNFromRecFN(expWidth, sigWidth, recFNFromFN(expWidth, sigWidth, io.a))
-
-    io.check := Bool(true)
-    io.pass := (io.out === io.a)
+    io.out := fNFromRecFN(expWidth, sigWidth, io.in)
+    io.isBadNaN := io.in(expWidth+sigWidth-1, expWidth+sigWidth -3) === UInt(7) && io.in(sigWidth-1,0) != UInt((BigInt(1)<<sigWidth)-1)
+    io.firstThree := io.in(expWidth+sigWidth-1, expWidth+sigWidth -3)
+    io.sig := io.in(sigWidth-1,0)
+    io.compare := UInt((BigInt(1) << sigWidth) - 1)
 }
 
 class Equiv_RecF16ToF16 extends Equiv_RecFNToFN(5, 11)

@@ -2049,7 +2049,7 @@ module AccumMulAddRecF32(input clk, input reset,
   assign regInit = {T6, T0};
   assign T0 = {T3, T1};
   assign T1 = T2[22:0];
-  assign T2 = 25'he00002;
+  assign T2 = 25'he00001;
   assign T3 = T4[5:0];
   assign T4 = T5;
   assign T5 = 10'h82;
@@ -2149,7 +2149,7 @@ module AccumMulAddRecF32(input clk, input reset,
   MulAddRecFN mulAdd(
        .io_op( 2'h0 ),
        .io_a( accum ),
-       .io_b( 33'h7fa00000 ),
+       .io_b( 33'h7f800000 ),
        .io_c( 33'h0 ),
        .io_roundingMode( 3'h0 ),
        .io_detectTininess( 1'h0 ),

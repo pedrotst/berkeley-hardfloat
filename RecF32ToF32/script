@@ -1,0 +1,2 @@
+verilator --top-module Equiv_RecF32ToF32 -Wno-CMPCONST -Wno-WIDTH -Wno-lint -Wno-fatal --cc Equiv_RecF32ToF32.v --trace --trace-underscore --exe Equiv_RecF32ToF32.cpp
+make -j -C obj_dir -f VEquiv_RecF32ToF32.mk
