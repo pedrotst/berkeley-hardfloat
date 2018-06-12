@@ -44,16 +44,21 @@ class Equiv_RecFNToFN(expWidth: Int, sigWidth: Int) extends Module
     val io = new Bundle {
         val in = Bits(INPUT, expWidth + sigWidth + 1)
         val out = Bits(OUTPUT, expWidth + sigWidth)
-        val isBadNaN = Bits(OUTPUT, 1)
-        val smallExp = Bits(OUTPUT, expWidth + 1)
-        val goodExp = Bits(OUTPUT, 1)
+        val isZeroGood = Bits(OUTPUT, 1)
+        val isBadExp = Bits(OUTPUT, 1)
+        val isSubnormalGood = Bits(OUTPUT, 1)
     }
 
     io.out := fNFromRecFN(expWidth, sigWidth, io.in)
-    io.isBadNaN := io.in(expWidth+sigWidth-1, expWidth+sigWidth -3) === UInt(7) && io.in(sigWidth-1,0) != UInt((BigInt(1)<<sigWidth)-1)
-    val smallExp = recFNFromFN(expWidth, sigWidth, UInt(1, expWidth + sigWidth))(expWidth + sigWidth - 1, sigWidth - 1)
-    io.goodExp := (!(io.in(expWidth + sigWidth - 1, sigWidth - 1) < smallExp)) || io.in(sigWidth - 2, 0) === UInt(0)
-    io.smallExp := smallExp
+    val exp = io.in(expWidth + sigWidth - 1, sigWidth - 1)
+    val exp3 = exp(expWidth, expWidth - 2)
+    val sig = io.in(sigWidth - 2, 0)
+    io.isZeroGood := exp3 != UInt(0) || sig === UInt(0)
+    val emin = UInt(BigInt(1 << (expWidth - 1)) + 2)
+    io.isBadExp := (exp3 != UInt(0)) && (exp < (emin - UInt(sigWidth - 1)))
+    val numZeros = exp - UInt(BigInt(1 << (expWidth - 1)) + 2)
+    val isSubnormal = exp < emin && exp >= emin - UInt(sigWidth - 1)
+    io.isSubnormalGood := isSubnormal && countLeadingZeros(Reverse(sig)) === numZeros
 }
 
 class Equiv_RecF16ToF16 extends Equiv_RecFNToFN(5, 11)

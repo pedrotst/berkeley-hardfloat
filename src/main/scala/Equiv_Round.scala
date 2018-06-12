@@ -45,12 +45,12 @@ class
     extends Module
 {
     val io = new Bundle {
-        val in = Bits(INPUT, inExpWidth + inSigWidth)
+        val in = UInt(INPUT, inExpWidth + inSigWidth)
         val roundingMode   = UInt(INPUT, 3)
         val detectTininess = UInt(INPUT, 1)
 
-        val out = Bits(OUTPUT, outExpWidth + outSigWidth)
-        val exceptionFlags = Bits(OUTPUT, 5)
+        val out = UInt(OUTPUT, outExpWidth + outSigWidth)
+        val exceptionFlags = UInt(OUTPUT, 5)
     }
 
     val recFNToRecFN =
@@ -78,12 +78,12 @@ class
     extends Module
 {
     val io = new Bundle {
-        val in = Bits(INPUT, inExpWidth + inSigWidth)
+        val in = UInt(INPUT, inExpWidth + inSigWidth)
         val roundingMode   = UInt(INPUT, 3)
         val detectTininess = UInt(INPUT, 1)
 
-        val out = Bits(OUTPUT, outExpWidth + outSigWidth)
-        val exceptionFlags = Bits(OUTPUT, 5)
+        val out = UInt(OUTPUT, outExpWidth + outSigWidth)
+        val exceptionFlags = UInt(OUTPUT, 5)
     }
 
     val recFNToRecFN =
@@ -119,13 +119,13 @@ class Bug_F64ToF32() extends Module
 
     val sth = Module (new Equiv_FNToFN(11, 53, 8, 24))
     io.fn64 := UInt("b0010111111110000000000000000000000000000000000000000000000000000")
-    io.recfn64 := recFNFromFN(io.fn64)
+    io.recfn64 := recFNFromFN(11, 53, io.fn64)
     io.roundMode := UInt("b001")
     io.tiny := UInt("b1")
     sth.io.in := io.fn64
     sth.io.roundingMode := io.roundMode
     sth.io.detectTininess := io.tiny
     io.fn32 := sth.io.out
-    io.recfn32 := recFNFromFN(io.fn32)
+    io.recfn32 := recFNFromFN(8, 24, io.fn32)
     io.flags := sth.io.exceptionFlags
 }
