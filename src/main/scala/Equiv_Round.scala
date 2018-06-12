@@ -105,4 +105,27 @@ class Equiv_RecF32ToRecF64 extends Equiv_RecFNToRecFN(8, 24, 11, 53)
 class Equiv_RecF64ToRecF16 extends Equiv_RecFNToRecFN(11, 53, 5, 11)
 class Equiv_RecF64ToRecF32 extends Equiv_RecFNToRecFN(11, 53, 8, 24)
 
+class Bug_F64ToF32() extends Module
+{
+    val io = new Bundle {
+       val fn64 = UInt(OUTPUT, 64)
+       val recfn64 = UInt(OUTPUT, 65)
+       val roundMode = UInt(OUTPUT, 3)
+       val tiny = UInt(OUTPUT, 1)
+       val fn32 = UInt(OUTPUT, 32)
+       val recfn32 = UInt(OUTPUT, 33)
+       val flags = UInt(OUTPUT, 5)
+    }
 
+    val sth = Module (new Equiv_FNToFN(11, 53, 8, 24))
+    io.fn64 := UInt("b0010111111110000000000000000000000000000000000000000000000000000")
+    io.recfn64 := recFNFromFN(io.fn64)
+    io.roundMode := UInt("b001")
+    io.tiny := UInt("b1")
+    sth.io.in := io.fn64
+    sth.io.roundingMode := io.roundMode
+    sth.io.detectTininess := io.tiny
+    io.fn32 := sth.io.out
+    io.recfn32 := recFNFromFN(io.fn32)
+    io.flags := sth.io.exceptionFlags
+}

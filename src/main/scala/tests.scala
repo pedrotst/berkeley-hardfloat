@@ -118,6 +118,8 @@ object FMATest {
                 chiselMain(testArgs, () => Module(new Equiv_F64ToI32))
             case "F64ToI64" =>
                 chiselMain(testArgs, () => Module(new Equiv_F64ToI64))
+            case "Bug_F64ToF32" =>
+                chiselMain(testArgs, () => Module(new Bug_F64ToF32))
             case "AccumMulAddRecF32" =>
                 chiselMain(
                     testArgs, () => Module(new AccumMulAddRecF32))
