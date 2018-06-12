@@ -58,7 +58,7 @@ class Equiv_RecFNToFN(expWidth: Int, sigWidth: Int) extends Module
     io.isBadExp := (exp3 != UInt(0)) && (exp < (emin - UInt(sigWidth - 1)))
     val numZeros = exp - UInt(BigInt(1 << (expWidth - 1)) + 2)
     val isSubnormal = exp < emin && exp >= emin - UInt(sigWidth - 1)
-    io.isSubnormalGood := isSubnormal && countLeadingZeros(Reverse(sig)) === numZeros
+    io.isSubnormalGood := isSubnormal && countLeadingZeros(Reverse(sig)) >= numZeros
 }
 
 class Equiv_RecF16ToF16 extends Equiv_RecFNToFN(5, 11)
