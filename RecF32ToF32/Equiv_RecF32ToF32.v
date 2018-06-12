@@ -4,7 +4,7 @@ module Equiv_RecF32ToF32(
     output io_isZeroGood,
     output io_isBadExp,
     output io_isSubnormalGood,
-    output io_goodNaN
+    output io_isGoodNaN
 );
 
   wire T0;
@@ -211,7 +211,7 @@ module Equiv_RecF32ToF32(
   wire T143;
 
 
-  assign io_goodNaN = T0;
+  assign io_isGoodNaN = T0;
   assign T0 = T2 | T1;
   assign T1 = sig != 23'h0;
   assign sig = io_in[22:0];
